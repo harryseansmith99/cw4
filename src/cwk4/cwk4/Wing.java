@@ -1,3 +1,4 @@
+package cwk4;
 
 public class Wing extends Force{
 	
