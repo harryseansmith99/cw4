@@ -12,11 +12,17 @@ public class Wing extends Force{
         setStrength(strk*20);
     }
 	
-	public static void main(String[] args) {
-		Wing w = new Wing("IW1", "Child", 20);
-		
-		int x = w.getStrength();
-		
-		System.out.println(x);
+	public int getStrikers() {
+		return strikers;
 	}
+	
+	public String toString() {
+        String s =  "\nRef: " + getReference()+
+                    "\nName: " + getName()+
+                    //"\nState: " +state+
+                    "\nStrength: " + getStrength()+
+                    "\nActivation Fee: " + getActivationFee()+
+                    "\nStrikers: " + getStrikers();
+        return s;
+    }
 }
