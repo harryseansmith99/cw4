@@ -25,12 +25,4 @@ public class Wing extends Force{
                     "\nStrikers: " + getStrikers();
         return s;
     }
-	
-	public static void main(String[] args) {
-		Wing w = new Wing("IW1", "Child", 20);
-		
-		int x = w.getStrength();
-		
-		System.out.println(x);
-	}
 }
