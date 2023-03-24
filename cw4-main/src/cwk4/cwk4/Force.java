@@ -3,20 +3,37 @@ package cwk4;
 public class Force {
 
     // Fields
-    public String reference;
-    public String name;
-    public ForceState state;
-    public int strength;
-    public int activationFee;
+    private String reference;
+    private String name;
+    private ForceState state;
+    private int strength;
+    private int activationFee;
 
     /**
      * Constructor which creates a force with a reference, name, strength, and activation fee.
      */
     public Force(String ref, String nme) {
-        reference = ref;
-        name = nme;
+        setReference(ref);
+        setName(nme);
         state = ForceState.DOCKED;
     }
+    
+    public void setReference(String ref) {
+    	reference = ref;
+    }
+    
+    public void setName(String nme) {
+    	name = nme;
+    }
+    
+    public void setStrength(int str) {
+    	strength = str;
+    }
+    
+    public void setFee(int fee) {
+    	activationFee = fee;
+    }
+    
     /**
      * Getter method which returns force's reference
      * @return force reference
