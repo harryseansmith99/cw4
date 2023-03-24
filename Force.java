@@ -1,21 +1,21 @@
 public class Force {
 
     // Fields
-    private String reference;
-    private String name;
-    private int state;
-    private int strength;
-    private int activationFee;
+    public String reference;
+    public String name;
+    public ForceState state;
+    public int strength;
+    public int activationFee;
 
     /**
      * Constructor which creates a force with a reference, name, strength, and activation fee.
      */
-    public Force(String ref, String nme, int strength, int fee) {
-        reference = ref;
-        name = nme;
-        //state = what is the default state ?????
-        this.strength = strength;
-        activationFee = fee;
+    public Force(String reference, String name, int strength, int activationFee) {
+        reference = this.reference;
+        name = this.name;
+        strength = this.strength;
+        activationFee = this.activationFee;
+        ForceState state = ForceState.DOCKED;
     }
     /**
      * Getter method which returns force's reference
