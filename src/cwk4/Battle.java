@@ -1,3 +1,4 @@
+package cwk4;
 /**
  * A battle containing an id number, type, enemy name, enemy strength, losses, and gains.
  */

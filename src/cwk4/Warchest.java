@@ -1,14 +1,16 @@
+package cwk4;
 /**
  * A warchest starts with 1000 bitcoins and this number can increase or decrease.
  */
 public class Warchest {
     
+    //fields
     private int bitcoins;
 
     /**
      * Constructor which creates a warchest with a set amount of bitcoins (1000).
      */
-    public warchest(){
+    public Warchest(){
         bitcoins = 1000;
     }
     /**

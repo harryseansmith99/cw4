@@ -1,4 +1,4 @@
-package cwk4; 
+package cwk4;
 import java.io.*;
 /**
  * Enumeration class BattleType - write a description of the enum class here

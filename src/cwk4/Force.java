@@ -1,3 +1,5 @@
+package cwk4;
+
 public class Force {
 
     // Fields
