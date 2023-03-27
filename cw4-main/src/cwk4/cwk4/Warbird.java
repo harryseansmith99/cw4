@@ -23,5 +23,17 @@ public class Warbird extends Force {
     public boolean isCloaked() {
         return this.cloaked;
     }
+    
+    @Override
+    public String toString() {
+    String s =  "\nRef: " +reference+
+                "\nName: " +name+
+                "\nState: " +getStateString()+
+                "\nStrength: " +strength+
+                "\nActivation Fee: " +activationFee +
+                "\ncloaked: " + cloaked;
+        
+    return s;
+    }
 
 }
