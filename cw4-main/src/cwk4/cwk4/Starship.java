@@ -6,9 +6,7 @@ package cwk4;
 public class Starship extends Force {
 
     //fields
-    private String ref;
-    private String name;
-    private int photonTorpedos;
+    private int photonTorpedoes;
     private int laserCannons;
 
     /**
@@ -20,19 +18,17 @@ public class Starship extends Force {
      */
     public Starship(String ref, String name, int photonTorpedos, int laserCannons) {
         super(ref, name);
-        this.ref = ref;
-        this.name = name;
-        this.photonTorpedos = photonTorpedos;
+        this.photonTorpedoes = photonTorpedoes;
         this.laserCannons = laserCannons;
         setFee(laserCannons*30);
-        setStrength((5*photonTorpedos)+(10*laserCannons));
+        setStrength((5*photonTorpedoes)+(10*laserCannons));
     }
     /**
-     * Getter method to return the number of photon torpedos.
-     * @return number of photon torpedos.
+     * Getter method to return the number of photon torpedoes.
+     * @return number of photon torpedoes.
      */
-    public int getPhotonTorpedos() {
-        return photonTorpedos;
+    public int getPhotonTorpedoes() {
+        return photonTorpedoes;
     }
     /**
      * Getter method to return the number of laser cannons.
@@ -46,11 +42,13 @@ public class Starship extends Force {
      * @return a string containing all information relevant to this starship force.
      */
     public String toString() {
-        String s =  "Ref: " +ref+
-                    "\nName: " +name+
-                    "\nnActivation Fee: " +getActivationFee()+
-                    "\nPhoton Torpedos: " +photonTorpedos+
-                    "\nLaser Cannons: " +laserCannons;
+        String s =  "Ref: " +getReference()+
+                    "\nName: " +getName()+
+                    "\nState: " +getStateString()+
+                    "\nStrength: " +getStrength()+
+                    "\nActivation Fee: " +getActivationFee()+
+                    "\nPhoton Torpedoes: " +getPhotonTorpedoes()+
+                    "\nLaser Cannons: " +getLaserCannons();
         return s;
     }
 }
