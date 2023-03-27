@@ -15,7 +15,11 @@ public class Warbird extends Force {
             super.setFee(300);
         }
     }
-
+    
+    /**
+    * @return the status of cloaked, which will be true or false
+    *
+    */
     public boolean isCloaked() {
         return this.cloaked;
     }
