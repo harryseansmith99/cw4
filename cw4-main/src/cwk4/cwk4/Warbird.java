@@ -8,7 +8,7 @@ public class Warbird extends Force {
         super(reference, name);
         this.cloaked = cloaked;
 
-        if (checkCloak()) {
+        if (isCloaked()) {
             super.setFee(400);
         }
         else {
@@ -16,7 +16,7 @@ public class Warbird extends Force {
         }
     }
 
-    public boolean checkCloak() {
+    public boolean isCloaked() {
         return this.cloaked;
     }
 
