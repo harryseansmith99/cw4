@@ -19,10 +19,10 @@ public class Wing extends Force{
 	public String toString() {
         String s =  "\nRef: " + getReference()+
                     "\nName: " + getName()+
-                    //"\nState: " +state+
+                    "\nState: " +getStateString()+
                     "\nStrength: " + getStrength()+
                     "\nActivation Fee: " + getActivationFee()+
                     "\nStrikers: " + getStrikers();
         return s;
     }
-}
+

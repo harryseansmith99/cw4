@@ -52,16 +52,20 @@ public class Force {
      * Getter method which returns force's state
      * @return force state
      */
-    //public int getState() {
-
-    //}
+    public ForceState getState() {
+    	return state;
+    }
+    
+    public String getStateString() {
+    	return state.toString();
+    }
     /**
      * Mutator method which updates force's state
      * @param st is the state which the force will be updated to.
      */
-    //public void changeState(String st) {
-
-    //}
+    public void changeState(ForceState st) {
+    	state = st;
+    }
     /**
      * Getter method which returns force's strength
      * @return force strength
@@ -83,7 +87,7 @@ public class Force {
     public String toString() {
         String s =  "\nRef: " +reference+
                     "\nName: " +name+
-                    "\nState: " +state+
+                    "\nState: " +getStateString()+
                     "\nStrength: " +strength+
                     "\nActivation Fee: " +activationFee;
         return s;
