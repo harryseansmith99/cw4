@@ -25,4 +25,5 @@ public class Wing extends Force{
                     "\nStrikers: " + getStrikers();
         return s;
     }
+}
 
