@@ -31,7 +31,7 @@ public class Warbird extends Force {
                 "\nState: " +getStateString()+
                 "\nStrength: " +strength+
                 "\nActivation Fee: " +activationFee +
-                "\ncloaked: " + cloaked;
+                "\nCloaked: " + cloaked;
         
     return s;
     }
