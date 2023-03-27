@@ -6,8 +6,6 @@ package cwk4;
 public class Starship extends Force {
 
     //fields
-    private String ref;
-    private String name;
     private int photonTorpedos;
     private int laserCannons;
 
@@ -20,8 +18,6 @@ public class Starship extends Force {
      */
     public Starship(String ref, String name, int photonTorpedos, int laserCannons) {
         super(ref, name);
-        this.ref = ref;
-        this.name = name;
         this.photonTorpedos = photonTorpedos;
         this.laserCannons = laserCannons;
         setFee(laserCannons*30);
@@ -46,11 +42,13 @@ public class Starship extends Force {
      * @return a string containing all information relevant to this starship force.
      */
     public String toString() {
-        String s =  "Ref: " +ref+
-                    "\nName: " +name+
-                    "\nnActivation Fee: " +getActivationFee()+
-                    "\nPhoton Torpedos: " +photonTorpedos+
-                    "\nLaser Cannons: " +laserCannons;
+        String s =  "\nRef: " +getReference()+
+                    "\nName: " +getName()+
+                    "\nState: " +getStateString()+
+                    "\nStrength: " +getStrength()+
+                    "\nActivation Fee: " +getActivationFee()+    
+                    "\nPhoton Torpedos: " +getPhotonTorpedos()+
+                    "\nLaser Cannons: " +getLaserCannons();
         return s;
     }
 }
