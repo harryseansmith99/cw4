@@ -1,29 +1,28 @@
 package cwk4;
 
-public class Wing extends Force{
-	
-	int strikers;
-	
-	public Wing(String ref, String nme, int strk) {
+public class Wing extends Force {
+
+    int strikers;
+
+    public Wing(String ref, String nme, int strikers) {
         super(ref, nme);
-        strikers = strk;
-        
+        this.strikers = strikers;
+
         setFee(200);
-        setStrength(strk*20);
+        setStrength(strikers * 20);
     }
-	
-	public int getStrikers() {
-		return strikers;
-	}
-	
-	public String toString() {
-        String s =  "\nRef: " + getReference()+
-                    "\nName: " + getName()+
-                    "\nState: " +getStateString()+
-                    "\nStrength: " + getStrength()+
-                    "\nActivation Fee: " + getActivationFee()+
-                    "\nStrikers: " + getStrikers();
+
+    public int getStrikers() {
+        return strikers;
+    }
+
+    public String toString() {
+        String s = "\nRef: " + getReference() +
+                "\nName: " + getName() +
+                "\nState: " + getStateString() +
+                "\nStrength: " + getStrength() +
+                "\nActivation Fee: " + getActivationFee() +
+                "\nStrikers: " + getStrikers();
         return s;
     }
 }
-

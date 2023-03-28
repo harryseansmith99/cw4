@@ -13,6 +13,10 @@ public class Warchest {
     public Warchest(){
         bitcoins = 1000;
     }
+    
+    public int getFunds() {
+    	return bitcoins;
+    }
     /**
      * Mutator method which adds funds into the warchest.
      * @param btc is the number of bitcoins to be added.
@@ -21,10 +25,10 @@ public class Warchest {
         bitcoins += btc;
     }
     /**
-     * Mutator method which reduces funds from warchest.
+     * Mutator method which deducts funds from warchest.
      * @param btc is the number of bitcoins to reduce by.
      */
-    public void reduceFunds(int btc) {
+    public void deductFunds(int btc) {
         bitcoins -= btc;
     }
     /**

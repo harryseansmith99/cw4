@@ -6,7 +6,7 @@ public class Battle {
     
     // fields
     private int battleNo;
-    private String battleType;
+    private BattleType battleType;
     private String enemyName;
     private int enemyStrength;
     private int losses;
@@ -15,13 +15,13 @@ public class Battle {
     /**
      * Constructor which creates a battle with an id number, type, enemy name, enemy strength, losses, and gains.
      */
-    public Battle(int id, String type, String nme, int strength, int l, int g) {
-        battleNo = id;
-        battleType = type;
-        enemyName = nme;
-        enemyStrength = strength;
-        losses = l;
-        gains = g;
+    public Battle(int battleNo, BattleType battleType, String enemyName, int enemyStrength, int losses, int gains) {
+        this.battleNo = battleNo;
+        this.battleType = battleType;
+        this.enemyName = enemyName;
+        this.enemyStrength = enemyStrength;
+        this.losses = losses;
+        this.gains = gains;
     }
     /**
      * Getter method which returns battle ID number.
@@ -34,8 +34,12 @@ public class Battle {
      * Getter method which returns the battle type.
      * @return battle type
      */
-    public String getType() {
+    public BattleType getType() {
         return battleType;
+    }
+    
+    public String getTypeString() {
+    	return battleType.toString();
     }
     /**
      * Getter method which returns the enemy's name.
@@ -70,12 +74,12 @@ public class Battle {
      * @return all relevant information related to the battle
      */
     public String toString() {
-        String s =  "\nID: "+battleNo+
-                    "\nType: " +battleType+
-                    "\nEnemy Name: " +enemyName+
-                    "\nEnemy Strength: " +enemyStrength+
-                    "\nLosses: " +losses+
-                    "\nGains: " +gains;
+        String s =  "\nID: "+getId()+
+                    "\nType: " +getTypeString()+
+                    "\nEnemy Name: " +getEnemyName()+
+                    "\nEnemy Strength: " +getEnemyStrength()+
+                    "\nLosses: " +getLosses()+
+                    "\nGains: " +getGains();
         return s;
     }
 
