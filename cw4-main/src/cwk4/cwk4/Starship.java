@@ -26,6 +26,7 @@ public class Starship extends Force {
         this.laserCannons = laserCannons;
         setFee(laserCannons * 30);
         setStrength((5 * photonTorpedoes) + (10 * laserCannons));
+        setForceType("Starship");
     }
 
     /**

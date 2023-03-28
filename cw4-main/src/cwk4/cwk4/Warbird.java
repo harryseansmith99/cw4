@@ -14,6 +14,7 @@ public class Warbird extends Force {
             super.setFee(300);
         }
         setStrength(strength);
+        setForceType("Warbird");
     }
 
     /**

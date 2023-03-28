@@ -24,7 +24,6 @@ public class SpaceWars implements WIN {
 
     ArrayList<Force> curForces = new ArrayList<Force>();
     ArrayList<Force> activeForces = new ArrayList<Force>();
-
     ArrayList<Battle> curBattles = new ArrayList<Battle>();
 
     public SpaceWars(String admiral) {
@@ -66,6 +65,9 @@ public class SpaceWars implements WIN {
      *          forces which can be recalled.
      */
     public boolean isDefeated() {
+        if (warchest.getFunds() <= 0 && !activeForces.isEmpty()) {
+            return true;
+        }
         return false;
     }
 
@@ -106,8 +108,8 @@ public class SpaceWars implements WIN {
      * @return a String representation of all forces in the United Forces Fleet(UFF)
      **/
     public boolean isInUFFDock(String ref) {
-        if (findForce(ref) != null) {
-            if (findForce(ref).getState() == ForceState.DOCKED) {
+        if (findForce(ref, curForces) != null) {
+            if (findForce(ref, curForces).getState() == ForceState.DOCKED) {
                 return true;
             }
         }
@@ -165,10 +167,10 @@ public class SpaceWars implements WIN {
      **/
     public String getForceDetails(String ref) {
         String s = "";
-        if (findForce(ref) == null) {
+        if (findForce(ref, curForces) == null) {
             s += "\nNo such force";
         } else
-            s += findForce(ref).toString();
+            s += findForce(ref, curForces).toString();
         return s;
     }
 
@@ -184,14 +186,15 @@ public class SpaceWars implements WIN {
      *         2 if not enough money, -1 if no such force
      **/
     public int activateForce(String ref) {
-        if (findForce(ref) != null) {
+        if (findForce(ref, curForces) != null) {
             if (!isInUFFDock(ref)) {
                 return 1;
-            } else if (isInUFFDock(ref) && warchest.getFunds() >= findForce(ref).getActivationFee()) {
-                warchest.deductFunds(findForce(ref).getActivationFee());
-                findForce(ref).changeState(ForceState.ACTIVE);
+            } else if (isInUFFDock(ref) && warchest.getFunds() >= findForce(ref, curForces).getActivationFee()) {
+                warchest.deductFunds(findForce(ref, curForces).getActivationFee());
+                findForce(ref, curForces).changeState(ForceState.ACTIVE);
+                activeForces.add(findForce(ref, curForces));
                 return 0;
-            } else if (isInUFFDock(ref) && warchest.getFunds() < findForce(ref).getActivationFee()) {
+            } else if (isInUFFDock(ref) && warchest.getFunds() < findForce(ref, curForces).getActivationFee()) {
 
                 return 2;
             }
@@ -210,11 +213,11 @@ public class SpaceWars implements WIN {
      *         is in the active Star Fleet(ASF), false otherwise.
      **/
     public boolean isInASFleet(String ref) {
-        if (findForce(ref) != null) {
-            if (findForce(ref).getState() == ForceState.ACTIVE) {
-                return true;
-            }
+        if (findForce(ref, activeForces) != null) {
+
+            return true;
         }
+
         return false;
     }
 
@@ -228,10 +231,10 @@ public class SpaceWars implements WIN {
     public String getASFleet() {
         String s = "\n****** Forces in the Active Star Fleet******\n";
 
-        if (curForces.isEmpty()) {
+        if (activeForces.isEmpty()) {
             s += "\nNo forces found";
         } else
-            for (Force temp_force : curForces) {
+            for (Force temp_force : activeForces) {
                 if (isInASFleet(temp_force.getReference())) {
                     s += "\n" + temp_force.toString();
                 }
@@ -248,9 +251,12 @@ public class SpaceWars implements WIN {
      * @param ref is the reference code of the force
      **/
     public void recallForce(String ref) {
-        if (findForce(ref) != null) {
+        Force temp_force = findForce(ref, activeForces);
+        if (temp_force != null) {
             if (isInASFleet(ref)) {
-                findForce(ref).changeState(ForceState.DOCKED);
+                temp_force.changeState(ForceState.DOCKED);
+                activeForces.remove(temp_force);
+                warchest.addFunds((temp_force.getActivationFee() / 2));
             }
         }
 
@@ -328,8 +334,14 @@ public class SpaceWars implements WIN {
      * @return an int showing the result of the battle (see above)
      */
     public int doBattle(int battleNo) {
-        if(isBattle(battleNo)){
-            for 
+        if (isBattle(battleNo) && !isDefeated()) {
+            if (!activeForces.isEmpty()) {
+                for (Force temp_force : activeForces) {
+                    if (isSuitableType(temp_force, findBattle(battleNo).getType())) {
+                        if()
+                    }
+                }
+            }
 
         }
         return 999;
@@ -379,8 +391,8 @@ public class SpaceWars implements WIN {
         curBattles.add(battle8);
     }
 
-    private Force findForce(String ref) {
-        for (Force temp_force : curForces) {
+    private Force findForce(String ref, ArrayList<Force> arr) {
+        for (Force temp_force : arr) {
             if (temp_force.getReference() == ref) {
                 return temp_force;
             }
@@ -396,6 +408,26 @@ public class SpaceWars implements WIN {
             }
         }
         return null;
+    }
+
+    private boolean isSuitableType(Force force, BattleType bt) {
+
+        if ((force.getForceType() == "Wing" && bt == BattleType.SKIRMISH)
+                || (force.getForceType() == "Wing" && bt == BattleType.AMBUSH)) {
+            return true;
+        }
+
+        if ((force.getForceType() == "Starship" && bt == BattleType.SKIRMISH)
+                || (force.getForceType() == "Starship" && bt == BattleType.FIGHT)) {
+            return true;
+        }
+
+        if ((force.getForceType() == "Warbird" && ((Warbird) force).isCloaked() && bt == BattleType.AMBUSH)
+                || (force.getForceType() == "Starship" && bt == BattleType.FIGHT)) {
+            return true;
+        }
+
+        return false;
     }
 
     // **************************Add your own private methos here

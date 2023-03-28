@@ -10,6 +10,7 @@ public class Wing extends Force {
 
         setFee(200);
         setStrength(strikers * 20);
+        setForceType("Wing");
     }
 
     public int getStrikers() {
