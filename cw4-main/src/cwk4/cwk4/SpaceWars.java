@@ -19,11 +19,19 @@ public class SpaceWars implements WIN {
      * 
      * @param admiral the name of the admiral
      */
+    private String admiralName;
+    Warchest warchest;
 
     ArrayList<Force> curForces = new ArrayList<Force>();
+    ArrayList<Force> activeForces = new ArrayList<Force>();
+
     ArrayList<Battle> curBattles = new ArrayList<Battle>();
 
     public SpaceWars(String admiral) {
+
+        warchest = new Warchest();
+
+        admiralName = admiral;
 
         setupForces();
         setupBattles();
@@ -67,7 +75,8 @@ public class SpaceWars implements WIN {
      * @returns the number of bit coins in the war chest
      */
     public int getWarchest() {
-        return 0;
+
+        return warchest.getFunds();
     }
 
     /*
@@ -78,7 +87,16 @@ public class SpaceWars implements WIN {
      */
     public String getAllForces() {
 
-        return "";
+        String s = "\nList of all Forces\n";
+
+        if (curForces.isEmpty()) {
+            s += "\nNo forces found";
+        } else
+            for (Force temp_force : curForces) {
+                s += "\n" + temp_force.toString();
+
+            }
+        return s;
     }
 
     /**
@@ -88,6 +106,11 @@ public class SpaceWars implements WIN {
      * @return a String representation of all forces in the United Forces Fleet(UFF)
      **/
     public boolean isInUFFDock(String ref) {
+        if (findForce(ref) != null) {
+            if (findForce(ref).getState() == ForceState.DOCKED) {
+                return true;
+            }
+        }
         return false;
     }
 
@@ -102,6 +125,15 @@ public class SpaceWars implements WIN {
     public String getForcesInDock() {
         String s = "\n\n************ Forces available in UFFleet Dock********\n";
 
+        if (curForces.isEmpty()) {
+            s += "\nNo forces found";
+        } else
+            for (Force temp_force : curForces) {
+                if (isInUFFDock(temp_force.getReference())) {
+                    s += "\n" + temp_force.toString();
+                }
+
+            }
         return s;
     }
 
@@ -112,7 +144,15 @@ public class SpaceWars implements WIN {
      */
     public String getDestroyedForces() {
         String s = "\n***** Destroyed Forces ****\n";
+        if (curForces.isEmpty()) {
+            s += "\nNo forces found";
+        } else
+            for (Force temp_force : curForces) {
+                if (temp_force.getState() == ForceState.DESTROYED) {
+                    s += "\n" + temp_force.toString();
+                }
 
+            }
         return s;
     }
 
@@ -124,8 +164,12 @@ public class SpaceWars implements WIN {
      * @return details of the force with the given reference code
      **/
     public String getForceDetails(String ref) {
-
-        return "\nNo such force";
+        String s = "";
+        if (findForce(ref) == null) {
+            s += "\nNo such force";
+        } else
+            s += findForce(ref).toString();
+        return s;
     }
 
     // ***************** Active Star Fleet Forces ************************
@@ -140,8 +184,21 @@ public class SpaceWars implements WIN {
      *         2 if not enough money, -1 if no such force
      **/
     public int activateForce(String ref) {
+        if (findForce(ref) != null) {
+            if (!isInUFFDock(ref)) {
+                return 1;
+            } else if (isInUFFDock(ref) && warchest.getFunds() >= findForce(ref).getActivationFee()) {
+                warchest.deductFunds(findForce(ref).getActivationFee());
+                findForce(ref).changeState(ForceState.ACTIVE);
+                return 0;
+            } else if (isInUFFDock(ref) && warchest.getFunds() < findForce(ref).getActivationFee()) {
 
+                return 2;
+            }
+
+        }
         return -1;
+
     }
 
     /**
@@ -153,6 +210,11 @@ public class SpaceWars implements WIN {
      *         is in the active Star Fleet(ASF), false otherwise.
      **/
     public boolean isInASFleet(String ref) {
+        if (findForce(ref) != null) {
+            if (findForce(ref).getState() == ForceState.ACTIVE) {
+                return true;
+            }
+        }
         return false;
     }
 
@@ -166,7 +228,17 @@ public class SpaceWars implements WIN {
     public String getASFleet() {
         String s = "\n****** Forces in the Active Star Fleet******\n";
 
+        if (curForces.isEmpty()) {
+            s += "\nNo forces found";
+        } else
+            for (Force temp_force : curForces) {
+                if (isInASFleet(temp_force.getReference())) {
+                    s += "\n" + temp_force.toString();
+                }
+
+            }
         return s;
+
     }
 
     /**
@@ -176,6 +248,11 @@ public class SpaceWars implements WIN {
      * @param ref is the reference code of the force
      **/
     public void recallForce(String ref) {
+        if (findForce(ref) != null) {
+            if (isInASFleet(ref)) {
+                findForce(ref).changeState(ForceState.DOCKED);
+            }
+        }
 
     }
 
@@ -187,6 +264,10 @@ public class SpaceWars implements WIN {
      * @returns true if the number represents a battle
      **/
     public boolean isBattle(int num) {
+        if (findBattle(num) != null) {
+            return true;
+        }
+
         return false;
     }
 
@@ -199,8 +280,17 @@ public class SpaceWars implements WIN {
      *         the battle number
      **/
     public String getBattle(int num) {
+        String s = "";
 
-        return "No such battle";
+        if (!isBattle(num)) {
+            s += "\nNo such Battle.";
+        }
+
+        else {
+            s += findBattle(num).toString();
+        }
+        return s;
+
     }
 
     /**
@@ -211,6 +301,13 @@ public class SpaceWars implements WIN {
     public String getAllBattles() {
         String s = "\n************ All Battles ************\n";
 
+        if (curBattles.isEmpty()) {
+            s += "\nNo battles found";
+        } else
+            for (Battle temp_battle : curBattles) {
+                s += "\n" + temp_battle.toString();
+
+            }
         return s;
     }
 
@@ -231,7 +328,10 @@ public class SpaceWars implements WIN {
      * @return an int showing the result of the battle (see above)
      */
     public int doBattle(int battleNo) {
+        if(isBattle(battleNo)){
+            for 
 
+        }
         return 999;
     }
 
@@ -277,6 +377,25 @@ public class SpaceWars implements WIN {
         curBattles.add(battle6);
         curBattles.add(battle7);
         curBattles.add(battle8);
+    }
+
+    private Force findForce(String ref) {
+        for (Force temp_force : curForces) {
+            if (temp_force.getReference() == ref) {
+                return temp_force;
+            }
+        }
+
+        return null;
+    }
+
+    private Battle findBattle(int num) {
+        for (Battle temp_battle : curBattles) {
+            if (temp_battle.getId() == num) {
+                return temp_battle;
+            }
+        }
+        return null;
     }
 
     // **************************Add your own private methos here
