@@ -351,9 +351,12 @@ public class SpaceWars implements WIN {
                 return 1;
             }
 
+        } else if (!isBattle(battleNo)) {
+            return -1;
         } else if (isDefeated()) {
             return 3;
         }
+
         return 999;
     }
 
