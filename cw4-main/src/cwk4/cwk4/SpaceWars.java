@@ -338,20 +338,22 @@ public class SpaceWars implements WIN {
             if (!activeForces.isEmpty()) {
                 for (Force temp_force : activeForces) {
                     if (isSuitableType(temp_force, findBattle(battleNo).getType())) {
-                        if(temp_force.getStrength()>=findBattle(battleNo).getEnemyStrength())
-                        {
+                        if (temp_force.getStrength() >= findBattle(battleNo).getEnemyStrength()) {
                             return 0;
+                        } else {
+                            return 2;
                         }
-                        else{return 2;}
 
                     }
-                    
-                }
-            }
-            else{return 1;}
 
+                }
+            } else {
+                return 1;
+            }
+
+        } else if (isDefeated()) {
+            return 3;
         }
-        else if(isDefeated()){return 3;}
         return 999;
     }
 
