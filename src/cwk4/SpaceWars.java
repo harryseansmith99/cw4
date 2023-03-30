@@ -52,16 +52,14 @@ public class SpaceWars implements WIN {
    *         Star Fleet,(or, "No forces" if Active Star Fleet is empty)
    **/
   public String toString() {
-    return (
-      "\nAdmiral`s Name: " +
-      admiralName +
-      "\nWarchest: " +
-      getWarchest() +
-      "\nIs defeated? " +
-      isDefeated() +
-      "\nActive forces: " +
-      getASFleet()
-    );
+    return ("\nAdmiral`s Name: " +
+        admiralName +
+        "\nWarchest: " +
+        getWarchest() +
+        "\nIs defeated? " +
+        isDefeated() +
+        "\nActive forces: " +
+        getASFleet());
   }
 
   /**
@@ -98,9 +96,10 @@ public class SpaceWars implements WIN {
 
     if (curForces.isEmpty()) {
       s += "\nNo forces found";
-    } else for (Force temp_force : curForces) {
-      s += "\n" + temp_force.toString();
-    }
+    } else
+      for (Force temp_force : curForces) {
+        s += "\n" + temp_force.toString();
+      }
     return s;
   }
 
@@ -132,11 +131,12 @@ public class SpaceWars implements WIN {
 
     if (curForces.isEmpty()) {
       s += "\nNo forces found";
-    } else for (Force temp_force : curForces) {
-      if (isInUFFDock(temp_force.getReference())) {
-        s += "\n" + temp_force.toString();
+    } else
+      for (Force temp_force : curForces) {
+        if (isInUFFDock(temp_force.getReference())) {
+          s += "\n" + temp_force.toString();
+        }
       }
-    }
     return s;
   }
 
@@ -149,11 +149,12 @@ public class SpaceWars implements WIN {
     String s = "\n***** Destroyed Forces ****\n";
     if (curForces.isEmpty()) {
       s += "\nNo forces found";
-    } else for (Force temp_force : curForces) {
-      if (temp_force.getState() == ForceState.DESTROYED) {
-        s += "\n" + temp_force.toString();
+    } else
+      for (Force temp_force : curForces) {
+        if (temp_force.getState() == ForceState.DESTROYED) {
+          s += "\n" + temp_force.toString();
+        }
       }
-    }
     return s;
   }
 
@@ -168,7 +169,8 @@ public class SpaceWars implements WIN {
     String s = "";
     if (findForce(ref, curForces) == null) {
       s += "\nNo such force";
-    } else s += findForce(ref, curForces).toString();
+    } else
+      s += findForce(ref, curForces).toString();
     return s;
   }
 
@@ -187,18 +189,14 @@ public class SpaceWars implements WIN {
     if (findForce(ref, curForces) != null) {
       if (!isInUFFDock(ref)) {
         return 1;
-      } else if (
-        isInUFFDock(ref) &&
-        warchest.getFunds() >= findForce(ref, curForces).getActivationFee()
-      ) {
+      } else if (isInUFFDock(ref) &&
+          warchest.getFunds() >= findForce(ref, curForces).getActivationFee()) {
         warchest.deductFunds(findForce(ref, curForces).getActivationFee());
         findForce(ref, curForces).changeState(ForceState.ACTIVE);
         activeForces.add(findForce(ref, curForces));
         return 0;
-      } else if (
-        isInUFFDock(ref) &&
-        warchest.getFunds() < findForce(ref, curForces).getActivationFee()
-      ) {
+      } else if (isInUFFDock(ref) &&
+          warchest.getFunds() < findForce(ref, curForces).getActivationFee()) {
         return 2;
       }
     }
@@ -233,11 +231,12 @@ public class SpaceWars implements WIN {
 
     if (activeForces.isEmpty()) {
       s += "\nNo forces found";
-    } else for (Force temp_force : activeForces) {
-      if (isInASFleet(temp_force.getReference())) {
-        s += "\n" + temp_force.toString();
+    } else
+      for (Force temp_force : activeForces) {
+        if (isInASFleet(temp_force.getReference())) {
+          s += "\n" + temp_force.toString();
+        }
       }
-    }
     return s + "\n";
   }
 
@@ -308,9 +307,10 @@ public class SpaceWars implements WIN {
 
     if (curBattles.isEmpty()) {
       s += "\nNo battles found";
-    } else for (Battle temp_battle : curBattles) {
-      s += "\n" + temp_battle.toString();
-    }
+    } else
+      for (Battle temp_battle : curBattles) {
+        s += "\n" + temp_battle.toString();
+      }
     return s;
   }
 
@@ -335,10 +335,7 @@ public class SpaceWars implements WIN {
       if (!activeForces.isEmpty()) {
         for (Force temp_force : activeForces) {
           if (isSuitableType(temp_force, findBattle(battleNo).getType())) {
-            if (
-              temp_force.getStrength() >=
-              findBattle(battleNo).getEnemyStrength()
-            ) {
+            if (temp_force.getStrength() >= findBattle(battleNo).getEnemyStrength()) {
               warchest.addFunds(findBattle(battleNo).getGains());
               return 0;
             } else {
@@ -395,24 +392,22 @@ public class SpaceWars implements WIN {
   private void setupBattles() {
     Battle battle1 = new Battle(1, BattleType.FIGHT, "Borg", 200, 300, 100);
     Battle battle2 = new Battle(
-      2,
-      BattleType.SKIRMISH,
-      "Kardassians",
-      700,
-      200,
-      120
-    );
+        2,
+        BattleType.SKIRMISH,
+        "Kardassians",
+        700,
+        200,
+        120);
     Battle battle3 = new Battle(3, BattleType.AMBUSH, "Ferengi", 100, 400, 150);
     Battle battle4 = new Battle(4, BattleType.FIGHT, "Ewoks", 600, 600, 200);
     Battle battle5 = new Battle(5, BattleType.AMBUSH, "Borg", 500, 400, 90);
     Battle battle6 = new Battle(
-      6,
-      BattleType.SKIRMISH,
-      "Groaners",
-      150,
-      100,
-      100
-    );
+        6,
+        BattleType.SKIRMISH,
+        "Groaners",
+        150,
+        100,
+        100);
     Battle battle7 = new Battle(7, BattleType.FIGHT, "Borg", 150, 500, 300);
     Battle battle8 = new Battle(8, BattleType.AMBUSH, "Wailers", 300, 300, 300);
 
@@ -446,28 +441,20 @@ public class SpaceWars implements WIN {
   }
 
   private boolean isSuitableType(Force force, BattleType bt) {
-    if (
-      (force.getForceType().equals("Wing") && bt == BattleType.SKIRMISH) ||
-      (force.getForceType().equals("Wing") && bt == BattleType.AMBUSH)
-    ) {
+    if ((force.getForceType().equals("Wing") && bt == BattleType.SKIRMISH) ||
+        (force.getForceType().equals("Wing") && bt == BattleType.AMBUSH)) {
       return true;
     }
 
-    if (
-      (force.getForceType().equals("Starship") && bt == BattleType.SKIRMISH) ||
-      (force.getForceType().equals("Starship") && bt == BattleType.FIGHT)
-    ) {
+    if ((force.getForceType().equals("Starship") && bt == BattleType.SKIRMISH) ||
+        (force.getForceType().equals("Starship") && bt == BattleType.FIGHT)) {
       return true;
     }
 
-    if (
-      (
-        force.getForceType().equals("Warbird") &&
+    if ((force.getForceType().equals("Warbird") &&
         ((Warbird) force).isCloaked() &&
-        bt == BattleType.AMBUSH
-      ) ||
-      (force.getForceType().equals("Warbird") && bt == BattleType.FIGHT)
-    ) {
+        bt == BattleType.AMBUSH) ||
+        (force.getForceType().equals("Warbird") && bt == BattleType.FIGHT)) {
       return true;
     }
 
@@ -513,7 +500,6 @@ public class SpaceWars implements WIN {
   public static void main(String[] args) {
     SpaceWars sw = new SpaceWars("69420");
     System.out.println(
-      sw.isSuitableType(sw.findForce("WB5", sw.curForces), BattleType.FIGHT)
-    );
+        sw.isSuitableType(sw.findForce("WB5", sw.curForces), BattleType.FIGHT));
   }
 }
