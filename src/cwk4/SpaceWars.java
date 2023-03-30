@@ -370,7 +370,7 @@ public class SpaceWars implements WIN {
   private void setupForces() {
     Wing wing1 = new Wing("IW1", "Twister", 10);
     Starship starship1 = new Starship("SS2", "Enterprise", 20, 10);
-    Warbird warbird1 = new Warbird("WB3", "Droop", 300, false);
+    Warbird warbird1 = new Warbird("WB3", "Droop", 100, false);
     Wing wing2 = new Wing("IW4", "Winger", 20);
     Warbird warbird2 = new Warbird("WB5", "Hang", 300, true);
     Starship starship2 = new Starship("SS6", "Voyager", 10, 15);
