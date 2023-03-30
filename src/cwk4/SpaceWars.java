@@ -346,11 +346,12 @@ public class SpaceWars implements WIN {
               }
               return 2;
             }
-          } else {
-            warchest.deductFunds(findBattle(battleNo).getLosses());
-            return 1;
           }
         }
+
+        warchest.deductFunds(findBattle(battleNo).getLosses());
+        return 1;
+
       } else {
         warchest.deductFunds(findBattle(battleNo).getLosses());
         if (isDefeated()) {
@@ -362,8 +363,6 @@ public class SpaceWars implements WIN {
     } else {
       return -1;
     }
-
-    return 999;
   }
 
   // *******************************************************************************
@@ -452,8 +451,7 @@ public class SpaceWars implements WIN {
     }
 
     if ((force.getForceType().equals("Warbird") &&
-        ((Warbird) force).isCloaked() &&
-        bt == BattleType.AMBUSH) ||
+        ((Warbird) force).isCloaked() && bt == BattleType.AMBUSH) ||
         (force.getForceType().equals("Warbird") && bt == BattleType.FIGHT)) {
       return true;
     }
