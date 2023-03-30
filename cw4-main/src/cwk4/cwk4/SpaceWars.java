@@ -72,7 +72,7 @@ public class SpaceWars implements WIN {
    *          forces which can be recalled.
    */
   public boolean isDefeated() {
-    if (warchest.getFunds() <= 0 && !activeForces.isEmpty()) {
+    if (warchest.getFunds() <= 0 && activeForces.isEmpty()) {
       return true;
     }
     return false;
@@ -238,7 +238,7 @@ public class SpaceWars implements WIN {
         s += "\n" + temp_force.toString();
       }
     }
-    return s;
+    return s + "\n";
   }
 
   /**
@@ -447,32 +447,33 @@ public class SpaceWars implements WIN {
 
   private boolean isSuitableType(Force force, BattleType bt) {
     if (
-      (force.getForceType() == "Wing" && bt == BattleType.SKIRMISH) ||
-      (force.getForceType() == "Wing" && bt == BattleType.AMBUSH)
+      (force.getForceType().equals("Wing") && bt == BattleType.SKIRMISH) ||
+      (force.getForceType().equals("Wing") && bt == BattleType.AMBUSH)
     ) {
       return true;
     }
 
     if (
-      (force.getForceType() == "Starship" && bt == BattleType.SKIRMISH) ||
-      (force.getForceType() == "Starship" && bt == BattleType.FIGHT)
+      (force.getForceType().equals("Starship") && bt == BattleType.SKIRMISH) ||
+      (force.getForceType().equals("Starship") && bt == BattleType.FIGHT)
     ) {
       return true;
     }
 
     if (
       (
-        force.getForceType() == "Warbird" &&
+        force.getForceType().equals("Warbird") &&
         ((Warbird) force).isCloaked() &&
         bt == BattleType.AMBUSH
       ) ||
-      (force.getForceType() == "Starship" && bt == BattleType.FIGHT)
+      (force.getForceType().equals("Warbird") && bt == BattleType.FIGHT)
     ) {
       return true;
     }
 
     return false;
   }
+
   // **************************Add your own private methos here
   // ***********************
 
@@ -509,4 +510,10 @@ public class SpaceWars implements WIN {
   //
   // }
 
+  public static void main(String[] args) {
+    SpaceWars sw = new SpaceWars("69420");
+    System.out.println(
+      sw.isSuitableType(sw.findForce("WB5", sw.curForces), BattleType.FIGHT)
+    );
+  }
 }
