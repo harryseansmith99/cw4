@@ -13,11 +13,7 @@ public enum ForceState implements Serializable {
 
     private String state;
 
-    private ForceState(String st) {
-        state = st;
-    }
+    private ForceState(String st) { state = st; }
 
-    public String toString() {
-        return state;
-    }
+    public String toString() { return state; }
 }

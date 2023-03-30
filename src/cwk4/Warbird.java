@@ -10,7 +10,8 @@ public class Warbird extends Force {
 
         if (isCloaked()) {
             super.setFee(400);
-        } else {
+        }
+        else {
             super.setFee(300);
         }
         setStrength(strength);
@@ -19,20 +20,13 @@ public class Warbird extends Force {
 
     /**
      * @return the status of cloaked, which will be true or false
-     *
      */
-    public boolean isCloaked() {
-        return this.cloaked;
-    }
+    public boolean isCloaked() { return this.cloaked; }
 
     @Override
     public String toString() {
-        String s = "\nRef: " + getReference() +
-                "\nName: " + getName() +
-                "\nState: " + getStateString() +
-                "\nStrength: " + getStrength() +
-                "\nActivation Fee: " + getActivationFee() +
-                "\nCloaked: " + isCloaked();
+        String s = "\nRef: " + getReference() + "\nName: " + getName() + "\nState: " + getStateString() + "\nStrength: "
+                + getStrength() + "\nActivation Fee: " + getActivationFee() + "\nCloaked: " + isCloaked();
 
         return s;
     }

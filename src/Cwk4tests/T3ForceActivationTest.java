@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * To change this license header, choose License Headers in Project Properties. To change this template file, choose Tools | Templates and open the template in the editor.
  */
 package Cwk4tests;
 
@@ -18,31 +16,24 @@ import static org.junit.Assert.*;
 import cwk4.WIN;
 
 /**
- *
  * @author aam
  */
 public class T3ForceActivationTest {
     WIN game;
-    
-    public T3ForceActivationTest() {
-    }
-    
+
+    public T3ForceActivationTest() {}
+
     @BeforeClass
-    public static void setUpClass() {
-    }
-    
+    public static void setUpClass() {}
+
     @AfterClass
-    public static void tearDownClass() {
-    }
-    
+    public static void tearDownClass() {}
+
     @Before
-    public void setUp() {
-        game = new SpaceWars("Olenka");
-    }
-    
+    public void setUp() { game = new SpaceWars("Olenka"); }
+
     @After
-    public void tearDown() {
-    }
+    public void tearDown() {}
 
     private boolean containsText(String text, String[] str) {
         boolean result = true;
@@ -51,11 +42,11 @@ public class T3ForceActivationTest {
         }
         return result;
     }
-        
+
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
     //
-    
+
     @Test
     public void forceActivationReturn() {
         int expected = 0;
@@ -63,7 +54,7 @@ public class T3ForceActivationTest {
         int actual = game.activateForce(forceRef);
         assertEquals(actual, expected);
     }
-    
+
     @Test
     public void forceActivationWorks() {
         String forceRef = "IW1";
@@ -71,6 +62,7 @@ public class T3ForceActivationTest {
         boolean actual = game.isInASFleet(forceRef);
         assertTrue(actual);
     }
+
     @Test
     public void warchestAfterForceActivated() {
         int expected = 800;
@@ -78,7 +70,7 @@ public class T3ForceActivationTest {
         int actual = game.getWarchest();
         assertEquals(expected, actual);
     }
-    
+
     @Test
     public void statusActiveForActivatedForce() {
         String expected = "active";
@@ -87,7 +79,7 @@ public class T3ForceActivationTest {
         boolean result = actual.toLowerCase().contains(expected);
         assertTrue(result);
     }
-    
+
     @Test
     public void notEnoughCreditInWarchest() {
         int expected = 200;
@@ -97,7 +89,7 @@ public class T3ForceActivationTest {
         game.activateForce("WB5");
         assertEquals(expected, game.getWarchest());
     }
-    
+
     @Test
     public void returnValueForNotEnoughInWarchest() {
         int expected = 2;
@@ -107,7 +99,7 @@ public class T3ForceActivationTest {
         int actual = game.activateForce("WB5");
         assertEquals(expected, actual);
     }
-    
+
     @Test
     public void returnValueForNotEnoughInWarchestOnNonExistentForce() {
         int expected = -1;
@@ -118,7 +110,7 @@ public class T3ForceActivationTest {
         int actual = game.activateForce("XX3");
         assertEquals(expected, actual);
     }
-    
+
     @Test
     public void reactivateExistingForceHasNoEffectOnWarchest() {
         int expected = 200;
@@ -129,9 +121,7 @@ public class T3ForceActivationTest {
         int actual = game.getWarchest();
         assertEquals(expected, actual);
     }
-    
-    
-    
+
     @Test
     public void forceRecallUpdatesWarchestForActivatedForce() {
         int expected = 800;
@@ -140,7 +130,7 @@ public class T3ForceActivationTest {
         int actual = game.getWarchest();
         assertEquals(expected, actual);
     }
-    
+
     @Test
     public void forceRecallDoesNotUpdateWarchestForNonActiveForce() {
         int expected = 800;
@@ -150,7 +140,7 @@ public class T3ForceActivationTest {
         int actual = game.getWarchest();
         assertEquals(expected, actual);
     }
-    
+
     @Test
     public void forceRecallDoesNotUpdateWarchestForNonExistantForce() {
         int expected = 800;

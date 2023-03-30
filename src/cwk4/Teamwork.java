@@ -34,9 +34,7 @@ public class Teamwork {
 
     }
 
-    public String[] getTeamDetails() {
-        return details;
-    }
+    public String[] getTeamDetails() { return details; }
 
     public void displayDetails() {
         for (String temp : details) {

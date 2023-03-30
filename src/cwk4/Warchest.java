@@ -1,8 +1,7 @@
 package cwk4;
 
 /**
- * A warchest starts with 1000 bitcoins and this number can increase or
- * decrease.
+ * A warchest starts with 1000 bitcoins and this number can increase or decrease.
  */
 public class Warchest {
 
@@ -12,35 +11,26 @@ public class Warchest {
     /**
      * Constructor which creates a warchest with a set amount of bitcoins (1000).
      */
-    public Warchest() {
-        bitcoins = 1000;
-    }
+    public Warchest() { bitcoins = 1000; }
 
-    public int getFunds() {
-        return bitcoins;
-    }
+    public int getFunds() { return bitcoins; }
 
     /**
      * Mutator method which adds funds into the warchest.
      * 
      * @param btc is the number of bitcoins to be added.
      */
-    public void addFunds(int btc) {
-        bitcoins += btc;
-    }
+    public void addFunds(int btc) { bitcoins += btc; }
 
     /**
      * Mutator method which deducts funds from warchest.
      * 
      * @param btc is the number of bitcoins to reduce by.
      */
-    public void deductFunds(int btc) {
-        bitcoins -= btc;
-    }
+    public void deductFunds(int btc) { bitcoins -= btc; }
 
     /**
-     * Getter method which returns a String containing all relevant information of
-     * the warchest.
+     * Getter method which returns a String containing all relevant information of the warchest.
      * 
      * @return a String containing all relevant information of the warchest
      */

@@ -13,11 +13,7 @@ public enum BattleType implements Serializable {
 
     private String type;
 
-    private BattleType(String ty) {
-        type = ty;
-    }
+    private BattleType(String ty) { type = ty; }
 
-    public String toString() {
-        return type;
-    }
+    public String toString() { return type; }
 }

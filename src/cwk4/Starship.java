@@ -1,9 +1,7 @@
 package cwk4;
 
 /**
- * A child class of Force called Starship which contains a reference, force
- * name, number of photon torpedoes, number of laser cannons and also its
- * activation cost.
+ * A child class of Force called Starship which contains a reference, force name, number of photon torpedoes, number of laser cannons and also its activation cost.
  */
 public class Starship extends Force {
 
@@ -12,8 +10,7 @@ public class Starship extends Force {
     private int laserCannons;
 
     /**
-     * Constructor which creates a Starship force with a reference, name, number of
-     * photon torpedoes, and number of laser cannons.
+     * Constructor which creates a Starship force with a reference, name, number of photon torpedoes, and number of laser cannons.
      * 
      * @param ref             is the force reference
      * @param name            is the force name
@@ -34,18 +31,14 @@ public class Starship extends Force {
      * 
      * @return number of photon torpedoes.
      */
-    public int getPhotonTorpedoes() {
-        return photonTorpedoes;
-    }
+    public int getPhotonTorpedoes() { return photonTorpedoes; }
 
     /**
      * Getter method to return the number of laser cannons.
      * 
      * @return number of laser cannons.
      */
-    public int getLaserCannons() {
-        return laserCannons;
-    }
+    public int getLaserCannons() { return laserCannons; }
 
     /**
      * Getter method to return all information relevant to this starship force.
@@ -53,13 +46,9 @@ public class Starship extends Force {
      * @return a string containing all information relevant to this starship force.
      */
     public String toString() {
-        String s = "\nRef: " + getReference() +
-                "\nName: " + getName() +
-                "\nState: " + getStateString() +
-                "\nStrength: " + getStrength() +
-                "\nActivation Fee: " + getActivationFee() +
-                "\nPhoton Torpedoes: " + getPhotonTorpedoes() +
-                "\nLaser Cannons: " + getLaserCannons();
+        String s = "\nRef: " + getReference() + "\nName: " + getName() + "\nState: " + getStateString() + "\nStrength: "
+                + getStrength() + "\nActivation Fee: " + getActivationFee() + "\nPhoton Torpedoes: "
+                + getPhotonTorpedoes() + "\nLaser Cannons: " + getLaserCannons();
         return s;
     }
 }

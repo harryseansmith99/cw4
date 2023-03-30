@@ -13,17 +13,11 @@ public class Wing extends Force {
         setForceType("Wing");
     }
 
-    public int getStrikers() {
-        return strikers;
-    }
+    public int getStrikers() { return strikers; }
 
     public String toString() {
-        String s = "\nRef: " + getReference() +
-                "\nName: " + getName() +
-                "\nState: " + getStateString() +
-                "\nStrength: " + getStrength() +
-                "\nActivation Fee: " + getActivationFee() +
-                "\nStrikers: " + getStrikers();
+        String s = "\nRef: " + getReference() + "\nName: " + getName() + "\nState: " + getStateString() + "\nStrength: "
+                + getStrength() + "\nActivation Fee: " + getActivationFee() + "\nStrikers: " + getStrikers();
         return s;
     }
 }

@@ -63,14 +63,14 @@ public class GameGUI {
 
     private String fighting(int code) {
         switch (code) {
-            case 0:
-                return "Fight won";
-            case 1:
-                return "Fight lost as no suitable force available";
-            case 2:
-                return "Fight lost on battle strength, force destroyed";
-            case 3:
-                return "fight is lost and admiral completely defeated ";
+        case 0:
+            return "Fight won";
+        case 1:
+            return "Fight lost as no suitable force available";
+        case 2:
+            return "Fight lost on battle strength, force destroyed";
+        case 3:
+            return "fight is lost and admiral completely defeated ";
         }
         return " no such fight ";
     }
@@ -94,7 +94,5 @@ public class GameGUI {
         }
     }
 
-    public static void main(String[] args) {
-        new GameGUI();
-    }
+    public static void main(String[] args) { new GameGUI(); }
 }

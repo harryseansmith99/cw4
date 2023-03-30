@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * To change this license header, choose License Headers in Project Properties. To change this template file, choose Tools | Templates and open the template in the editor.
  */
 package Cwk4tests;
 
@@ -15,31 +13,24 @@ import static org.junit.Assert.*;
 import cwk4.WIN;
 
 /**
- *
  * @author aam
  */
 public class T4BattleTest {
     WIN game;
-    
-    public T4BattleTest() {
-    }
-    
+
+    public T4BattleTest() {}
+
     @BeforeClass
-    public static void setUpClass() {
-    }
-    
+    public static void setUpClass() {}
+
     @AfterClass
-    public static void tearDownClass() {
-    }
-    
+    public static void tearDownClass() {}
+
     @Before
-    public void setUp() {
-        game = new SpaceWars("Jean");
-    }
-    
+    public void setUp() { game = new SpaceWars("Jean"); }
+
     @After
-    public void tearDown() {
-    }
+    public void tearDown() {}
 
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
@@ -52,7 +43,7 @@ public class T4BattleTest {
         int actual = game.getWarchest();
         assertEquals(expected, actual);
     }
-    
+
     @Test
     public void wingFacingSkirmishLoseOnStrength() {
         int expected = 600;
@@ -61,7 +52,7 @@ public class T4BattleTest {
         int actual = game.getWarchest();
         assertEquals(expected, actual);
     }
-    
+
     @Test
     public void wingFacingAmbushWins() {
         int expected = 950;
@@ -70,7 +61,7 @@ public class T4BattleTest {
         int actual = game.getWarchest();
         assertEquals(expected, actual);
     }
-    
+
     @Test
     public void wingFacingAmbushLoseOnSkill() {
         int expected = 400;
@@ -79,7 +70,7 @@ public class T4BattleTest {
         int actual = game.getWarchest();
         assertEquals(expected, actual);
     }
-    
+
     @Test
     public void wingFacingBattleNotAllowed() {
         int expected = 500;
@@ -88,7 +79,7 @@ public class T4BattleTest {
         int actual = game.getWarchest();
         assertEquals(expected, actual);
     }
-    
+
     @Test
     public void starshipFacingSkirmishWins() {
         int expected = 650;
@@ -97,7 +88,7 @@ public class T4BattleTest {
         int actual = game.getWarchest();
         assertEquals(expected, actual);
     }
-    
+
     @Test
     public void starshipFacingSkirmishLoseOnStrength() {
         int expected = 500;
@@ -106,7 +97,7 @@ public class T4BattleTest {
         int actual = game.getWarchest();
         assertEquals(expected, actual);
     }
-    
+
     @Test
     public void starshipFacingAmbushNotAllowed() {
         int expected = 300;
@@ -115,7 +106,7 @@ public class T4BattleTest {
         int actual = game.getWarchest();
         assertEquals(expected, actual);
     }
-    
+
     @Test
     public void starshipFacingBattleWins() {
         int expected = 650;
@@ -124,7 +115,7 @@ public class T4BattleTest {
         int actual = game.getWarchest();
         assertEquals(expected, actual);
     }
-    
+
     @Test
     public void starshipFacingBattleLoseOnStrength() {
         int expected = 580;
@@ -133,7 +124,7 @@ public class T4BattleTest {
         int actual = game.getWarchest();
         assertEquals(expected, actual);
     }
-    
+
     @Test
     public void warbirdFacingSkirmishNotAllowed() {
         int expected = 600;
@@ -142,7 +133,7 @@ public class T4BattleTest {
         int actual = game.getWarchest();
         assertEquals(expected, actual);
     }
-    
+
     @Test
     public void warbirdNoCloakingFacingAmbushNotAllowed() {
         int expected = 300;
@@ -151,7 +142,7 @@ public class T4BattleTest {
         int actual = game.getWarchest();
         assertEquals(expected, actual);
     }
-    
+
     @Test
     public void warbirdWithCloakingFacingAmbushWins() {
         int expected = 750;
@@ -160,7 +151,7 @@ public class T4BattleTest {
         int actual = game.getWarchest();
         assertEquals(expected, actual);
     }
-    
+
     @Test
     public void warbirdWithCloakingFacingAmbushLoseOnStrength() {
         int expected = 200;
@@ -169,7 +160,7 @@ public class T4BattleTest {
         int actual = game.getWarchest();
         assertEquals(expected, actual);
     }
-    
+
     @Test
     public void warbirdFacingBattleWinsOnStrength() {
         int expected = 700;
@@ -178,7 +169,7 @@ public class T4BattleTest {
         int actual = game.getWarchest();
         assertEquals(expected, actual);
     }
-    
+
     @Test
     public void warbirdFacingBattleLoseOnStrength() {
         int expected = 100;
@@ -187,7 +178,7 @@ public class T4BattleTest {
         int actual = game.getWarchest();
         assertEquals(expected, actual);
     }
-    
+
     @Test
     public void recallingDestroyedForceInFightDoesntAffectWarchest() {
         int expected = 600;
@@ -197,7 +188,7 @@ public class T4BattleTest {
         int actual = game.getWarchest();
         assertEquals(expected, actual);
     }
-    
+
     @Test
     public void recallingDestroyedInFightForceDoesntAffectWarchestOnReactivation() {
         int expected = 600;
@@ -207,7 +198,7 @@ public class T4BattleTest {
         int actual = game.getWarchest();
         assertEquals(expected, actual);
     }
-    
+
     @Test
     public void checkNotDefeatedWhileStillActiveForces() {
         game.activateForce("IW1");
@@ -217,7 +208,7 @@ public class T4BattleTest {
         game.doBattle(5);
         assertFalse(game.isDefeated());
     }
-    
+
     @Test
     public void checkDefeatedWhenGoingBust() {
         game.activateForce("IW1");
