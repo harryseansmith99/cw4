@@ -108,11 +108,11 @@ public class Force {
      * @return all relevant information related to this force
      */
     public String toString() {
-        String s = "\nRef: " + reference +
-                "\nName: " + name +
+        String s = "\nRef: " + getReference() +
+                "\nName: " + getName() +
                 "\nState: " + getStateString() +
-                "\nStrength: " + strength +
-                "\nActivation Fee: " + activationFee;
+                "\nStrength: " + getStrength() +
+                "\nActivation Fee: " + getActivationFee();
         return s;
     }
 }

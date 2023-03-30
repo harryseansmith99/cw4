@@ -53,7 +53,7 @@ public class Starship extends Force {
      * @return a string containing all information relevant to this starship force.
      */
     public String toString() {
-        String s = "Ref: " + getReference() +
+        String s = "\nRef: " + getReference() +
                 "\nName: " + getName() +
                 "\nState: " + getStateString() +
                 "\nStrength: " + getStrength() +

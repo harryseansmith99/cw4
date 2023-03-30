@@ -253,12 +253,21 @@ public class SpaceWars implements WIN {
     public void recallForce(String ref) {
         Force temp_force = findForce(ref, activeForces);
         if (temp_force != null) {
-            if (isInASFleet(ref)) {
                 temp_force.changeState(ForceState.DOCKED);
                 activeForces.remove(temp_force);
                 warchest.addFunds((temp_force.getActivationFee() / 2));
             }
-        }
+    
+
+    }
+
+    public void destroyForce(String ref) {
+        Force temp_force = findForce(ref, activeForces);
+        if (temp_force != null) {
+                temp_force.changeState(ForceState.DESTROYED);
+                activeForces.remove(temp_force);
+            }
+    
 
     }
 
