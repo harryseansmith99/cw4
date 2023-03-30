@@ -488,11 +488,4 @@ public class SpaceWars implements WIN {
     //
     // }
 
-    public static void main(String[] args)
-    {
-        SpaceWars sw = new SpaceWars("Takanyashi");
-        System.out.println(sw.getForceDetails("SS2"));
-
-    }
-
 }
