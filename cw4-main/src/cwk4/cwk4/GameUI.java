@@ -19,7 +19,7 @@ public class GameUI
         int result = -1;
         System.out.println("Enter admiral's name");
         String s = myIn.nextLine();
-        SpaceWars gp = new SpaceWars(s); 
+        WIN gp = new SpaceWars(s); 
         choice = 100;
         while (choice != 0 )
         {
