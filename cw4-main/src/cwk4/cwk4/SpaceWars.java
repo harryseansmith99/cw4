@@ -415,7 +415,7 @@ public class SpaceWars implements WIN {
 
     private Force findForce(String ref, ArrayList<Force> arr) {
         for (Force temp_force : arr) {
-            if (temp_force.getReference() == ref) {
+            if (temp_force.getReference().equals(ref.toUpperCase())) {
                 return temp_force;
             }
         }
@@ -487,5 +487,12 @@ public class SpaceWars implements WIN {
     // {
     //
     // }
+
+    public static void main(String[] args)
+    {
+        SpaceWars sw = new SpaceWars("Takanyashi");
+        System.out.println(sw.getForceDetails("SS2"));
+
+    }
 
 }

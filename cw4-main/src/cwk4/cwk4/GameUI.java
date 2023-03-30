@@ -19,7 +19,7 @@ public class GameUI
         int result = -1;
         System.out.println("Enter admiral's name");
         String s = myIn.nextLine();
-        WIN gp = new SpaceWars(s); 
+        SpaceWars gp = new SpaceWars(s); 
         choice = 100;
         while (choice != 0 )
         {
@@ -36,7 +36,7 @@ public class GameUI
             {
                 System.out.println("Enter Force reference");
                 myIn.nextLine();
-                String ref = (myIn.nextLine()).trim();
+                String ref = (myIn.nextLine().trim());
                 System.out.println(gp.getForceDetails(ref));
             } 
             else if (choice == 4) //activate Force
