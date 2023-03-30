@@ -54,7 +54,7 @@ public class SpaceWars implements WIN {
      **/
     public String toString() {
 
-        return "";
+        return "\nAdmiral`s Name: "+admiralName+"\nWarchest: "+getWarchest()+"\nIs defeated? "+isDefeated()+"\nActive forces: "+getASFleet();
     }
 
     /**
