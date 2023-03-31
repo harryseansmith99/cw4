@@ -79,6 +79,20 @@ public class T2DisplayBattlesForcesTest {
         boolean actual = containsText2(result, "6", "Skirmish", "Groaners");
         assertTrue(actual);
     }
+    
+    @Test
+    public void battleNo7Displayed() {
+        String result = swim.getAllBattles();
+        boolean actual = containsText2(result, "7", "Fight", "Borg");
+        assertTrue(actual);
+    }
+    
+    @Test
+    public void battleNo8Displayed() {
+        String result = swim.getAllBattles();
+        boolean actual = containsText2(result, "8", "Ambush", "Wailers");
+        assertTrue(actual);
+    }
 
     @Test
     public void forceFleetIW1Displayed() {
