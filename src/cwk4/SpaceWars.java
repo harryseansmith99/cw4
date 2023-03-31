@@ -1,6 +1,7 @@
 package cwk4;
 
 import java.io.*;
+import java.lang.ProcessBuilder.Redirect.Type;
 import java.util.*;
 
 /**
@@ -24,9 +25,9 @@ public class SpaceWars implements WIN {
   ArrayList<Force> curForces = new ArrayList<Force>();
   ArrayList<Force> activeForces = new ArrayList<Force>();
   ArrayList<Battle> curBattles = new ArrayList<Battle>();
-  File savefile;
-  FileWriter saveGame;
-  FileReader loadGame;
+  File save;
+  FileWriter saveFile;
+  FileReader loadFile;
 
   public SpaceWars(String admiral) {
     warchest = new Warchest();
@@ -34,6 +35,15 @@ public class SpaceWars implements WIN {
     admiralName = admiral;
 
     setupForces();
+    setupBattles();
+  }
+
+  public SpaceWars(String admiral, String filename) {
+
+    warchest = new Warchest();
+
+    admiralName = admiral;
+
     setupBattles();
   }
 
@@ -440,8 +450,62 @@ public class SpaceWars implements WIN {
   // * @param fname name of file storing the game
   // * @return the game (as a SpaceWars object)
   // */
-  // public SpaceWars restoreGame(String fname)
-  {
+  public SpaceWars restoreGame(String fname) {
+    SpaceWars tsw = new SpaceWars("Kiwawa");
+    return (tsw);
+
+  }
+
+  private void readBattles(String fname) {
+    curBattles = ReadObjectFromFile("battles.txt");
+
+  }
+
+  private void createSaveFile() {
+
+    save = new File("savefile.txt");
+
+  }
+
+  private void writeObjectToFile(String filename, Object serObj) {
+    try {
+
+      FileOutputStream fileOut = new FileOutputStream(filename);
+      ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
+      objectOut.writeObject(serObj);
+      objectOut.close();
+      System.out.println("The Object  was succesfully written to a file");
+
+    }
+    catch (Exception ex) {
+      ex.printStackTrace();
+    }
+  }
+
+  private ArrayList<Object> ReadObjectFromFile(String filename) {
+
+    FileInputStream fis;
+    try {
+      fis = new FileInputStream(filename);
+      ObjectInputStream input = new ObjectInputStream(fis);
+      ArrayList<Object> objectList = new ArrayList<>();
+      boolean cont = true;
+      while (cont) {
+        Object obj = input.readObject();
+        if (obj != null) {
+          objectList.add(obj);
+        }
+        else {
+          cont = false;
+          input.close();
+        }
+      }
+      return objectList;
+    }
+    catch (Exception e) {
+      // System.out.println(e.printStackTrace());
+      return null;
+    }
 
   }
 
@@ -450,12 +514,5 @@ public class SpaceWars implements WIN {
   // appropriate collection
   // * @param the name of the file
   // */
-  private void readBattles(String fname) {
 
-  }
-
-  public static void main(String[] args) {
-    SpaceWars sw = new SpaceWars("69420");
-    System.out.println(sw.isSuitableType(sw.findForce("WB5", sw.curForces), BattleType.FIGHT));
-  }
 }
