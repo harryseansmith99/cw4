@@ -24,6 +24,9 @@ public class SpaceWars implements WIN {
   ArrayList<Force> curForces = new ArrayList<Force>();
   ArrayList<Force> activeForces = new ArrayList<Force>();
   ArrayList<Battle> curBattles = new ArrayList<Battle>();
+  File savefile;
+  FileWriter saveGame;
+  FileReader loadGame;
 
   public SpaceWars(String admiral) {
     warchest = new Warchest();
@@ -427,10 +430,10 @@ public class SpaceWars implements WIN {
   // /** Writes whole game to the specified file
   // * @param fname name of file storing requests
   // */
-  // public void saveGame(String fname)
-  // { // uses object serialisation
-  //
-  // }
+  public void saveGame(String fname) { // uses object serialisation
+
+  }
+
   //
   // /** reads all information about the game from the specified file
   // * and returns a SpaceWars object
@@ -438,18 +441,18 @@ public class SpaceWars implements WIN {
   // * @return the game (as a SpaceWars object)
   // */
   // public SpaceWars restoreGame(String fname)
-  // {
-  //
-  // }
+  {
+
+  }
+
   //
   // /** Reads information about battles from the specified file into the
   // appropriate collection
   // * @param the name of the file
   // */
-  // private void readBattles(String fname)
-  // {
-  //
-  // }
+  private void readBattles(String fname) {
+
+  }
 
   public static void main(String[] args) {
     SpaceWars sw = new SpaceWars("69420");
