@@ -89,6 +89,15 @@ public class T3ForceActivationTest {
         game.activateForce("WB5");
         assertEquals(expected, game.getWarchest());
     }
+    
+    @Test
+    public void returnValueForAlreadyActiveForce() {
+    	int expected = 1;
+    	game.activateForce("IW1");
+    	game.activateForce("SS2");
+    	int actual = game.activateForce("IW1");
+    	assertEquals(expected, actual);
+    }
 
     @Test
     public void returnValueForNotEnoughInWarchest() {
