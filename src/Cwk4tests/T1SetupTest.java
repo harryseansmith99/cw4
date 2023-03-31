@@ -73,12 +73,19 @@ public class T1SetupTest {
     @Test
     public void allBattleLoadedAtSetup() {
         boolean result = true;
-        for (int i = 1; i < 8; i++) {
+        for (int i = 1; i <= 8; i++) {
             result = result && game.isBattle(i);
         }
         assertTrue(result);
     }
-
+    
+    //Test a battle that doesn't exist in Appendix A
+    @Test
+    public void nonExistingBattleAtSetup() {
+    	boolean result = game.isBattle(9);
+    	assertFalse(result);
+    }
+    
     @Test
     public void forceInUFFAtSetup() {
         boolean result = game.isInUFFDock("IW1");
@@ -106,6 +113,16 @@ public class T1SetupTest {
         }
         assertTrue(result);
     }
+    
+    //Test to make sure recallForce has no effect on docked/setup forces
+    @Test
+    public void recallForceFromSetup() {
+    	int initialFunds = game.getWarchest(); 
+    	game.recallForce("IW1");
+    	int resultFunds = game.getWarchest();
+    	boolean result = initialFunds == resultFunds;
+    	assertTrue(result);
+    }
 
     @Test
     public void detailsOfWB3() {
@@ -115,6 +132,17 @@ public class T1SetupTest {
         };
         boolean result = containsText(str, target);
         assertTrue(result);
+    }
+    
+    //Test a WarBird with cloak
+    @Test
+    public void detailsOfWB5() {
+    	String str = game.getForceDetails("WB5");
+    	String[] target = {
+    			"WB5", "Hang", "300", "400", "In dock", "true"
+    	};
+    	boolean result = containsText(str, target);
+    	assertTrue(result);
     }
 
     @Test
@@ -155,5 +183,16 @@ public class T1SetupTest {
         };
         boolean result = containsText(str, details);
         assertTrue(result);
+    }
+    
+    //Test to make sure game does not use a non existing battle
+    @Test
+    public void detailsOfNonExistingBattle() {
+    	String str = game.getBattle(-1);
+    	String[] details = {
+    			"No such Battle"
+    	};
+    	boolean result = containsText(str, details);
+    	assertTrue(result);
     }
 }
