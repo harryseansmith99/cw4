@@ -44,7 +44,8 @@ public class SpaceWars implements WIN {
 
     admiralName = admiral;
 
-    setupBattles();
+    setupForces();
+    readBattles(filename);
   }
 
   /**
@@ -457,13 +458,31 @@ public class SpaceWars implements WIN {
   }
 
   private void readBattles(String fname) {
-    curBattles = ReadObjectFromFile("battles.txt");
+    ArrayList<Object> tempArray = new ArrayList<>();
+    tempArray = ReadObjectFromFile(fname);
+    for (Object tempObject : tempArray) {
+      {
+        curBattles.add((Battle) tempObject);
+      }
+    }
 
   }
 
   private void createSaveFile() {
 
-    save = new File("savefile.txt");
+    File save = new File("src/cwk4/save.txt");
+    try {
+      if (save.createNewFile()) {
+        System.out.println("File created: " + save.getName());
+      }
+      else {
+        System.out.println("File already exists.");
+      }
+    }
+    catch (IOException e) {
+      System.out.println("An error occurred.");
+      e.printStackTrace();
+    }
 
   }
 
@@ -484,9 +503,8 @@ public class SpaceWars implements WIN {
 
   private ArrayList<Object> ReadObjectFromFile(String filename) {
 
-    FileInputStream fis;
     try {
-      fis = new FileInputStream(filename);
+      FileInputStream fis = new FileInputStream(filename);
       ObjectInputStream input = new ObjectInputStream(fis);
       ArrayList<Object> objectList = new ArrayList<>();
       boolean cont = true;
@@ -514,5 +532,19 @@ public class SpaceWars implements WIN {
   // appropriate collection
   // * @param the name of the file
   // */
+
+  public static void main(String[] args) {
+
+    SpaceWars sw = new SpaceWars("Cortana");
+
+    ArrayList<Object> tempArray = sw.ReadObjectFromFile("src/cwk4/battles.txt");
+    System.out.println(tempArray);
+    // for (Object tempObject : tempArray) {
+    // {
+    // System.out.println(tempObject.toString());
+    // }
+    // }
+
+  }
 
 }
