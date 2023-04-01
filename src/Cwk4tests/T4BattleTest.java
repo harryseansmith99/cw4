@@ -219,4 +219,20 @@ public class T4BattleTest {
         game.doBattle(4);
         assertTrue(game.isDefeated());
     }
+    
+    //Test to make sure the game can still be played normally when getting out of debt
+    @Test
+    public void checkCanStillActivateForcesAfterGettingOutOfDebt() {
+    	int expected = 30;
+    	game.activateForce("IW1");
+    	game.activateForce("WB3");
+    	game.activateForce("SS6");
+    	game.doBattle(2);
+    	game.doBattle(1);
+    	game.doBattle(7);
+    	game.doBattle(7);
+    	game.activateForce("SS7");
+    	int actual = game.getWarchest();
+    	assertEquals(expected, actual);
+    }
 }
