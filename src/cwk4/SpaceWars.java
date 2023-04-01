@@ -459,7 +459,7 @@ public class SpaceWars implements WIN {
 
   private void readBattles(String fname) {
     ArrayList<Object> tempArray = new ArrayList<>();
-    tempArray = ReadObjectFromFile(fname);
+    tempArray = ObjectReader(fname);
     for (Object tempObject : tempArray) {
       {
         curBattles.add((Battle) tempObject);
@@ -501,29 +501,27 @@ public class SpaceWars implements WIN {
     }
   }
 
-  private ArrayList<Object> ReadObjectFromFile(String filename) {
+  public ArrayList<Object> ObjectReader(String fileName) {
+
+    ArrayList<Object> objectsList = new ArrayList<>();
 
     try {
-      FileInputStream fis = new FileInputStream(filename);
-      ObjectInputStream input = new ObjectInputStream(fis);
-      ArrayList<Object> objectList = new ArrayList<>();
-      boolean cont = true;
-      while (cont) {
-        Object obj = input.readObject();
-        if (obj != null) {
-          objectList.add(obj);
-        }
-        else {
-          cont = false;
-          input.close();
-        }
+      FileInputStream fileIn = new FileInputStream(fileName);
+      ObjectInputStream objIn = new ObjectInputStream(fileIn);
+
+      Object obj;
+      while ((obj = objIn.readObject()) != null) {
+        objectsList.add(obj);
       }
-      return objectList;
+
+      objIn.close();
+      fileIn.close();
     }
     catch (Exception e) {
-      // System.out.println(e.printStackTrace());
-      return null;
+      e.printStackTrace();
     }
+
+    return objectsList;
 
   }
 
@@ -537,8 +535,8 @@ public class SpaceWars implements WIN {
 
     SpaceWars sw = new SpaceWars("Cortana");
 
-    ArrayList<Object> tempArray = sw.ReadObjectFromFile("src/cwk4/battles.txt");
-    System.out.println(tempArray);
+    ArrayList<Object> tempArray = sw.ObjectReader("src/cwk4/battles.txt");
+    System.out.println(tempArray.toString());
     // for (Object tempObject : tempArray) {
     // {
     // System.out.println(tempObject.toString());
