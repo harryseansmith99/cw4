@@ -22,6 +22,8 @@ public class Warchest {
      */
     public void addFunds(int btc) { bitcoins += btc; }
 
+    public void assertFunds(int btc) { bitcoins = btc; }
+
     /**
      * Mutator method which deducts funds from warchest.
      * 

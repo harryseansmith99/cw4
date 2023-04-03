@@ -458,13 +458,8 @@ public class SpaceWars implements WIN {
   }
 
   private void readBattles(String fname) {
-    ArrayList<Object> tempArray = new ArrayList<>();
-    tempArray = ObjectReader(fname);
-    for (Object tempObject : tempArray) {
-      {
-        curBattles.add((Battle) tempObject);
-      }
-    }
+
+    fileReader(fname, 2);
 
   }
 
@@ -501,9 +496,13 @@ public class SpaceWars implements WIN {
     }
   }
 
-  public ArrayList<Object> ObjectReader(String fileName) {
+  private void fileReader(String fileName, int option) {
 
-    ArrayList<Object> objectsList = new ArrayList<>();
+    String admiralnm = "";
+    ArrayList<Battle> battleList = new ArrayList<>();
+    ArrayList<Force> forcesList = new ArrayList<>();
+    ArrayList<Force> activeList = new ArrayList<>();
+    Warchest temp_wc = new Warchest();
 
     try {
       FileInputStream fileIn = new FileInputStream(fileName);
@@ -511,18 +510,61 @@ public class SpaceWars implements WIN {
 
       Object obj;
       while ((obj = objIn.readObject()) != null) {
-        objectsList.add(obj);
+
+        if (obj instanceof Force) {
+          forcesList.add((Force) obj);
+          if (((Force) obj).getState() == ForceState.ACTIVE) {
+            activeList.add((Force) obj);
+          }
+
+        }
+        else if (obj instanceof Battle) {
+          battleList.add((Battle) obj);
+
+        }
+        else if (obj instanceof Warchest) {
+          temp_wc.assertFunds(((Warchest) obj).getFunds());
+
+        }
+        else if (obj instanceof String) {
+          admiralnm = (String) obj;
+        }
+
       }
 
       objIn.close();
       fileIn.close();
     }
+    catch (EOFException e) {
+      // reached the end of the file, do nothing
+    }
     catch (Exception e) {
       e.printStackTrace();
     }
 
-    return objectsList;
+    if (option == 1) {
+      curForces = forcesList;
+      activeForces = activeList;
 
+    }
+    else if (option == 2) {
+      curBattles = battleList;
+
+    }
+    else if (option == 3) {
+      warchest = temp_wc;
+
+    }
+    else if (option == 4) {
+      admiralName = admiralnm;
+
+    }
+    else if (option == 5) {
+      admiralName = admiralnm;
+      curForces = forcesList;
+      activeForces = activeList;
+      warchest = temp_wc;
+    }
   }
 
   //
@@ -534,9 +576,10 @@ public class SpaceWars implements WIN {
   public static void main(String[] args) {
 
     SpaceWars sw = new SpaceWars("Cortana");
+    sw.writeObjectToFile("src/cwk4/save.txt");
 
-    ArrayList<Object> tempArray = sw.ObjectReader("src/cwk4/battles.txt");
-    System.out.println(tempArray.toString());
+    sw.fileReader("src/cwk4/battles.txt", 2);
+    System.out.println(sw.getAllBattles());
     // for (Object tempObject : tempArray) {
     // {
     // System.out.println(tempObject.toString());
