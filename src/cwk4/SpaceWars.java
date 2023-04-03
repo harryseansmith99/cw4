@@ -481,6 +481,7 @@ public class SpaceWars implements WIN {
     Warchest temp_wc = new Warchest();
     ArrayList<Force> tempCurForces = new ArrayList<Force>();
     ArrayList<Force> tempActiveForces = new ArrayList<Force>();
+    Force tf;
 
     {
 
@@ -494,9 +495,21 @@ public class SpaceWars implements WIN {
         temp_wc = (Warchest) oi.readObject();
         tsw.warchest.assertFunds(temp_wc.getFunds());
 
-        for (Force temp_force : curForces) {
-
+        while (true) {
+          try {
+            tf = (Force) oi.readObject();
+            tempCurForces.add(tf);
+            if (tf.getState() == ForceState.ACTIVE) {
+              tempActiveForces.add(tf);
+            }
+          }
+          catch (EOFException e) {
+            break; // no more objects to read
+          }
         }
+
+        tsw.curForces = tempCurForces;
+        tsw.activeForces = tempActiveForces;
 
         oi.close();
         fi.close();
@@ -538,6 +551,7 @@ public class SpaceWars implements WIN {
     sw.warchest.assertFunds(69420);
     System.out.println(sw.toString());
     sw.activateForce("SS2");
+    sw.activateForce("IW1");
     System.out.println(sw.toString());
     sw.saveGame("Cortana");
     sw = new SpaceWars("Kiwawa");
