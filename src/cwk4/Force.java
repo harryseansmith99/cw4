@@ -1,6 +1,8 @@
 package cwk4;
 
-public class Force {
+import java.io.*;
+
+public class Force implements Serializable {
 
     // Fields
     private String reference;

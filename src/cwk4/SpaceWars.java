@@ -45,7 +45,6 @@ public class SpaceWars implements WIN {
     admiralName = admiral;
 
     setupForces();
-    readBattles(filename);
   }
 
   /**
@@ -442,6 +441,31 @@ public class SpaceWars implements WIN {
   // * @param fname name of file storing requests
   // */
   public void saveGame(String fname) { // uses object serialisation
+    createSaveFile(fname);
+    {
+
+      try {
+        FileOutputStream f = new FileOutputStream(new File("src/cwk4/" + fname + ".txt"));
+        ObjectOutputStream o = new ObjectOutputStream(f);
+
+        o.writeObject(admiralName);
+        o.writeObject(warchest);
+
+        for (Force temp_force : curForces) {
+          o.writeObject(temp_force);
+        }
+
+        o.close();
+        f.close();
+      }
+      catch (FileNotFoundException e) {
+        System.out.println("File not found");
+      }
+      catch (IOException e) {
+        System.out.println("Error initializing stream");
+      }
+
+    }
 
   }
 
@@ -452,119 +476,53 @@ public class SpaceWars implements WIN {
   // * @return the game (as a SpaceWars object)
   // */
   public SpaceWars restoreGame(String fname) {
-    SpaceWars tsw = new SpaceWars("Kiwawa");
+
+    SpaceWars tsw = new SpaceWars("");
+    Warchest temp_wc = new Warchest();
+    ArrayList<Force> tempCurForces = new ArrayList<Force>();
+    ArrayList<Force> tempActiveForces = new ArrayList<Force>();
+
+    {
+
+      try {
+
+        FileInputStream fi = new FileInputStream("src/cwk4/" + fname + ".txt");
+        ObjectInputStream oi = new ObjectInputStream(fi);
+
+        String name = (String) oi.readObject();
+        tsw = new SpaceWars(name);
+        temp_wc = (Warchest) oi.readObject();
+        tsw.warchest.assertFunds(temp_wc.getFunds());
+
+        for (Force temp_force : curForces) {
+
+        }
+
+        oi.close();
+        fi.close();
+
+      }
+      catch (FileNotFoundException e) {
+        System.out.println("File not found");
+      }
+      catch (IOException e) {
+        System.out.println("Error initializing stream");
+      }
+      catch (ClassNotFoundException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+      }
+
+    }
+
     return (tsw);
 
   }
 
-  private void readBattles(String fname) {
+  private void createSaveFile(String fname) {
 
-    fileReader(fname, 2);
+    File save = new File("src/cwk4/" + fname + ".txt");
 
-  }
-
-  private void createSaveFile() {
-
-    File save = new File("src/cwk4/save.txt");
-    try {
-      if (save.createNewFile()) {
-        System.out.println("File created: " + save.getName());
-      }
-      else {
-        System.out.println("File already exists.");
-      }
-    }
-    catch (IOException e) {
-      System.out.println("An error occurred.");
-      e.printStackTrace();
-    }
-
-  }
-
-  private void writeObjectToFile(String filename, Object serObj) {
-    try {
-
-      FileOutputStream fileOut = new FileOutputStream(filename);
-      ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
-      objectOut.writeObject(serObj);
-      objectOut.close();
-      System.out.println("The Object  was succesfully written to a file");
-
-    }
-    catch (Exception ex) {
-      ex.printStackTrace();
-    }
-  }
-
-  private void fileReader(String fileName, int option) {
-
-    String admiralnm = "";
-    ArrayList<Battle> battleList = new ArrayList<>();
-    ArrayList<Force> forcesList = new ArrayList<>();
-    ArrayList<Force> activeList = new ArrayList<>();
-    Warchest temp_wc = new Warchest();
-
-    try {
-      FileInputStream fileIn = new FileInputStream(fileName);
-      ObjectInputStream objIn = new ObjectInputStream(fileIn);
-
-      Object obj;
-      while ((obj = objIn.readObject()) != null) {
-
-        if (obj instanceof Force) {
-          forcesList.add((Force) obj);
-          if (((Force) obj).getState() == ForceState.ACTIVE) {
-            activeList.add((Force) obj);
-          }
-
-        }
-        else if (obj instanceof Battle) {
-          battleList.add((Battle) obj);
-
-        }
-        else if (obj instanceof Warchest) {
-          temp_wc.assertFunds(((Warchest) obj).getFunds());
-
-        }
-        else if (obj instanceof String) {
-          admiralnm = (String) obj;
-        }
-
-      }
-
-      objIn.close();
-      fileIn.close();
-    }
-    catch (EOFException e) {
-      // reached the end of the file, do nothing
-    }
-    catch (Exception e) {
-      e.printStackTrace();
-    }
-
-    if (option == 1) {
-      curForces = forcesList;
-      activeForces = activeList;
-
-    }
-    else if (option == 2) {
-      curBattles = battleList;
-
-    }
-    else if (option == 3) {
-      warchest = temp_wc;
-
-    }
-    else if (option == 4) {
-      admiralName = admiralnm;
-
-    }
-    else if (option == 5) {
-      admiralName = admiralnm;
-      curForces = forcesList;
-      activeForces = activeList;
-      warchest = temp_wc;
-    }
   }
 
   //
@@ -576,15 +534,16 @@ public class SpaceWars implements WIN {
   public static void main(String[] args) {
 
     SpaceWars sw = new SpaceWars("Cortana");
-    sw.writeObjectToFile("src/cwk4/save.txt");
 
-    sw.fileReader("src/cwk4/battles.txt", 2);
-    System.out.println(sw.getAllBattles());
-    // for (Object tempObject : tempArray) {
-    // {
-    // System.out.println(tempObject.toString());
-    // }
-    // }
+    sw.warchest.assertFunds(69420);
+    System.out.println(sw.toString());
+    sw.activateForce("SS2");
+    System.out.println(sw.toString());
+    sw.saveGame("Cortana");
+    sw = new SpaceWars("Kiwawa");
+    System.out.println(sw.toString());
+    sw = sw.restoreGame("Cortana");
+    System.out.println(sw.toString());
 
   }
 

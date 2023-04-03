@@ -1,9 +1,11 @@
 package cwk4;
 
+import java.io.*;
+
 /**
  * A warchest starts with 1000 bitcoins and this number can increase or decrease.
  */
-public class Warchest {
+public class Warchest implements Serializable {
 
     // fields
     private int bitcoins;
