@@ -1,14 +1,12 @@
 package cwk4;
 
-import java.io.*;
-
 /**
  * Enumeration class BattleType - write a description of the enum class here
  * 
  * @author A.Marczyk
  * @version 02/11/2019
  */
-public enum BattleType implements Serializable {
+public enum BattleType {
     SKIRMISH(" Skirmish"), AMBUSH(" Ambush"), FIGHT(" Fight");
 
     private String type;

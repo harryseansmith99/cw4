@@ -16,15 +16,16 @@ public class GameUI {
   private void playGame() {
     int choice;
 
-    String admiralName;
+    String admiralName = "";
 
     int result = -1;
 
     System.out.println("Enter admiral's name");
 
     String s = myIn.nextLine();
+    admiralName = s;
 
-    WIN gp = new SpaceWars(s, "src/cwk4/battles.txt");
+    WIN gp = new SpaceWars(s, "battles");
     choice = 100;
 
     while (choice != 0) {
@@ -93,12 +94,17 @@ public class GameUI {
       else if (choice == 9) // Task 3.5 only
       {
         System.out.println("Write to file");
-        gp.saveGame("battles.txt");
+        gp.saveGame(admiralName);
       }
       else if (choice == 10) // Task 3.5 only
       {
         System.out.println("Restore from file");
-        gp = gp.restoreGame("olenka.txt");
+
+        System.out.println("Enter Admiral`s name");
+        myIn.nextLine();
+        String name = (myIn.nextLine().trim());
+
+        gp = gp.restoreGame(name.toLowerCase());
         System.out.println(gp.toString());
       }
     }
@@ -118,8 +124,8 @@ public class GameUI {
     System.out.println("7. Recall a force");
     System.out.println("8. View the state of the game");
     // For Task 3.5 only
-    // System.out.println("9. Save this game");
-    // System.out.println("10. Restore a game");
+    System.out.println("9. Save this game");
+    System.out.println("10. Restore a game");
 
     while (choice < 0 || choice > 10) {
       System.out.println("Enter the number of your choice");
@@ -144,7 +150,9 @@ public class GameUI {
   }
 
   public static void main(String[] args) {
+
     GameUI myGame = new GameUI();
     myGame.playGame();
+
   }
 }

@@ -1,7 +1,7 @@
 package cwk4;
 
 import java.io.*;
-import java.lang.ProcessBuilder.Redirect.Type;
+
 import java.util.*;
 
 /**
@@ -38,14 +38,14 @@ public class SpaceWars implements WIN {
     setupBattles();
   }
 
-  public SpaceWars(String admiral, String filename) {
+  public SpaceWars(String admiral, String fname) {
 
     warchest = new Warchest();
 
     admiralName = admiral;
 
     setupForces();
-    readBattles(filename);
+    readBattles(fname);
   }
 
   /**
@@ -442,11 +442,11 @@ public class SpaceWars implements WIN {
   // * @param fname name of file storing requests
   // */
   public void saveGame(String fname) { // uses object serialisation
-    createSaveFile(fname);
+    createSaveFile(getFilePath(2, fname));
     {
 
       try {
-        FileOutputStream f = new FileOutputStream(new File("src/cwk4/" + fname + ".txt"));
+        FileOutputStream f = new FileOutputStream(getFilePath(2, fname));
         ObjectOutputStream o = new ObjectOutputStream(f);
 
         o.writeObject(admiralName);
@@ -460,10 +460,10 @@ public class SpaceWars implements WIN {
         f.close();
       }
       catch (FileNotFoundException e) {
-        System.out.println("File not found");
+
       }
       catch (IOException e) {
-        System.out.println("Error initializing stream");
+
       }
 
     }
@@ -488,7 +488,7 @@ public class SpaceWars implements WIN {
 
       try {
 
-        FileInputStream fi = new FileInputStream("src/cwk4/" + fname + ".txt");
+        FileInputStream fi = new FileInputStream(getFilePath(2, fname));
         ObjectInputStream oi = new ObjectInputStream(fi);
 
         String name = (String) oi.readObject();
@@ -505,7 +505,7 @@ public class SpaceWars implements WIN {
             }
           }
           catch (EOFException e) {
-            break; // no more objects to read
+            break;
           }
         }
 
@@ -517,10 +517,10 @@ public class SpaceWars implements WIN {
 
       }
       catch (FileNotFoundException e) {
-        System.out.println("File not found");
+
       }
       catch (IOException e) {
-        System.out.println("Error initializing stream");
+
       }
       catch (ClassNotFoundException e) {
         // TODO Auto-generated catch block
@@ -535,50 +535,65 @@ public class SpaceWars implements WIN {
 
   private void createSaveFile(String fname) {
 
-    File save = new File("src/cwk4/" + fname + ".txt");
+    File save = new File(getFilePath(2, fname));
+
+  }
+
+  private String getFilePath(int option, String fname) {
+    String s = "";
+
+    if (option == 1) {
+      s = ("src/cwk4/" + fname.toLowerCase() + ".txt");
+    }
+
+    else if (option == 2) {
+      s = ("src/cwk4/Saved Games/" + fname.toLowerCase() + ".txt");
+    }
+
+    else {
+      s = "Unexpected input";
+    }
+
+    return s;
 
   }
 
   private void readBattles(String fname) {
     ArrayList<Battle> tempCurBattles = new ArrayList<Battle>();
-    Battle tf;
 
-    {
+    String tempStr = "";
+    String[] temparr;
+    int tempBattleNo = 1;
+    BattleType tempBt = BattleType.valueOf("AMBUSH");
 
-      try {
+    try (BufferedReader buffer = new BufferedReader(new FileReader(getFilePath(1, fname)))) {
 
-        FileInputStream fi = new FileInputStream(fname);
-        ObjectInputStream oi = new ObjectInputStream(fi);
+      while ((tempStr = buffer.readLine()) != null) {
+        temparr = (tempStr.split("\\,"));
 
-        while (true) {
-          try {
-            tf = (Battle) oi.readObject();
-            tempCurBattles.add(tf);
+        for (BattleType tempbt : BattleType.values()) {
 
-          }
-          catch (EOFException e) {
-            break; // no more objects to read
+          if (tempbt.name().equalsIgnoreCase(temparr[0])) {
+
+            tempBt = BattleType.valueOf(tempbt.name().toUpperCase());
+            break;
           }
         }
 
-        curBattles = tempCurBattles;
+        Battle tempbattle = new Battle(tempBattleNo, tempBt, temparr[1], Integer.parseInt(temparr[2]),
+            Integer.parseInt(temparr[3]), Integer.parseInt(temparr[4]));
 
-        oi.close();
-        fi.close();
-
+        tempCurBattles.add(tempbattle);
+        tempBattleNo++;
       }
-      catch (FileNotFoundException e) {
-        System.out.println("File not found");
-      }
-      catch (IOException e) {
-        System.out.println("Error initializing stream");
-      }
-      catch (ClassNotFoundException e) {
-        // TODO Auto-generated catch block
-        e.printStackTrace();
-      }
-
     }
+
+    catch (IOException e) {
+
+      e.printStackTrace();
+    }
+    curBattles = tempCurBattles;
+
   }
 
   //
@@ -586,24 +601,5 @@ public class SpaceWars implements WIN {
   // appropriate collection
   // * @param the name of the file
   // */
-
-  public static void main(String[] args) {
-
-    SpaceWars sw = new SpaceWars("Cortana", "src/cwk4/battles.txt");
-
-    System.out.println(sw.getAllBattles());
-
-    sw.warchest.assertFunds(69420);
-    System.out.println(sw.toString());
-    sw.activateForce("SS2");
-    sw.activateForce("IW1");
-    System.out.println(sw.toString());
-    sw.saveGame("Cortana");
-    sw = new SpaceWars("Kiwawa");
-    System.out.println(sw.toString());
-    sw = sw.restoreGame("Cortana");
-    System.out.println(sw.toString());
-
-  }
 
 }
