@@ -45,6 +45,7 @@ public class SpaceWars implements WIN {
     admiralName = admiral;
 
     setupForces();
+    readBattles(filename);
   }
 
   /**
@@ -538,6 +539,48 @@ public class SpaceWars implements WIN {
 
   }
 
+  private void readBattles(String fname) {
+    ArrayList<Battle> tempCurBattles = new ArrayList<Battle>();
+    Battle tf;
+
+    {
+
+      try {
+
+        FileInputStream fi = new FileInputStream(fname);
+        ObjectInputStream oi = new ObjectInputStream(fi);
+
+        while (true) {
+          try {
+            tf = (Battle) oi.readObject();
+            tempCurBattles.add(tf);
+
+          }
+          catch (EOFException e) {
+            break; // no more objects to read
+          }
+        }
+
+        curBattles = tempCurBattles;
+
+        oi.close();
+        fi.close();
+
+      }
+      catch (FileNotFoundException e) {
+        System.out.println("File not found");
+      }
+      catch (IOException e) {
+        System.out.println("Error initializing stream");
+      }
+      catch (ClassNotFoundException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+      }
+
+    }
+  }
+
   //
   // /** Reads information about battles from the specified file into the
   // appropriate collection
@@ -546,7 +589,9 @@ public class SpaceWars implements WIN {
 
   public static void main(String[] args) {
 
-    SpaceWars sw = new SpaceWars("Cortana");
+    SpaceWars sw = new SpaceWars("Cortana", "src/cwk4/battles.txt");
+
+    System.out.println(sw.getAllBattles());
 
     sw.warchest.assertFunds(69420);
     System.out.println(sw.toString());
