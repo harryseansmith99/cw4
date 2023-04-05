@@ -18,7 +18,7 @@ public class GameUI {
 
     String admiralName = "";
 
-    int result = -1;
+    // int result = -1;
 
     System.out.println("Enter admiral's name");
 
