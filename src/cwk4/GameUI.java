@@ -104,7 +104,7 @@ public class GameUI {
         myIn.nextLine();
         String name = (myIn.nextLine().trim());
 
-        gp = gp.restoreGame(name.toLowerCase());
+        gp = gp.restoreGame(name);
         System.out.println(gp.toString());
       }
     }
