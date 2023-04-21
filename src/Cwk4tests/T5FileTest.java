@@ -58,6 +58,7 @@ public class T5FileTest {
 
         String postSaveResult = game.toString();
         boolean postSaveActual = containsText(postSaveResult, SaveExpected);
+        System.out.println(containsText(postSaveResult, SaveExpected));
 
         boolean compareActual = preSaveActual && postSaveActual;
         assertTrue(compareActual);
