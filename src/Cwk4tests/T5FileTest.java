@@ -8,6 +8,9 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import cwk4.WIN;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * @author aam
@@ -22,13 +25,13 @@ public class T5FileTest {
 
     @AfterClass
     public static void tearDownClass() {}
-    
+
     @Before
     public void setUp() { game = new SpaceWars("Group9"); }
 
     @After
     public void tearDown() {}
-    
+
     private boolean containsText(String text, String[] str) {
         boolean result = true;
         for (String temp : str) {
@@ -36,48 +39,48 @@ public class T5FileTest {
         }
         return result;
     }
-    
+
     @Test
     public void saveGameWithForceThenLoadSameGame() {
-    	game.activateForce("IW1");
-    	String[] preSaveExpected = {
+        game.activateForce("IW1");
+        String[] preSaveExpected = {
                 "Group9", "800", "IW1"
         };
-    	String preSaveResult = game.toString();
-    	boolean preSaveActual = containsText(preSaveResult, preSaveExpected);
-    	game.saveGame("Group9");
-    	
-    	game = game.restoreGame("Group9");
-    	String[] postSaveExpected = {
+        String preSaveResult = game.toString();
+        boolean preSaveActual = containsText(preSaveResult, preSaveExpected);
+        game.saveGame("Group9");
+
+        game = game.restoreGame("Group9");
+        String[] postSaveExpected = {
                 "Group9", "800", "IW1"
         };
-    	String postSaveResult = game.toString();
-    	boolean postSaveActual = containsText(postSaveResult, postSaveExpected);
-    	
-    	boolean compareActual = preSaveActual && postSaveActual;
-    	assertTrue(compareActual);
+        String postSaveResult = game.toString();
+        boolean postSaveActual = containsText(postSaveResult, postSaveExpected);
+
+        boolean compareActual = preSaveActual && postSaveActual;
+        assertTrue(compareActual);
     }
-    
+
     @Test
     public void loadGameWithUnsavedChanges() {
-    	game.activateForce("IW4");
-    	String[] preSaveExpected = {
+        game.activateForce("IW4");
+        String[] preSaveExpected = {
                 "Group9", "800", "IW4"
         };
-    	String preSaveResult = game.toString();
-    	boolean preSaveActual = containsText(preSaveResult, preSaveExpected);
-    	game.saveGame("Group9");
-    	game.activateForce("WB3");
-    	game.doBattle(2);
-    	
-    	game = game.restoreGame("Group9");
-    	String[] postSaveExpected = {
+        String preSaveResult = game.toString();
+        boolean preSaveActual = containsText(preSaveResult, preSaveExpected);
+        game.saveGame("Group9");
+        game.activateForce("WB3");
+        game.doBattle(2);
+
+        game = game.restoreGame("Group9");
+        String[] postSaveExpected = {
                 "Group9", "800", "IW4"
         };
-    	String postSaveResult = game.toString();
-    	boolean postSaveActual = containsText(postSaveResult, postSaveExpected);
-    	
-    	boolean compareActual = preSaveActual && postSaveActual;
-    	assertTrue(compareActual);
+        String postSaveResult = game.toString();
+        boolean postSaveActual = containsText(postSaveResult, postSaveExpected);
+
+        boolean compareActual = preSaveActual && postSaveActual;
+        assertTrue(compareActual);
     }
 }
