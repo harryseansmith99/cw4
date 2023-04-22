@@ -50,7 +50,6 @@ public class T5FileTest {
                 "Group9", "800", "IW1"
         };
         String preSaveResult = game.toString();
-        System.out.println(containsText(preSaveResult, SaveExpected));
         boolean preSaveActual = containsText(preSaveResult, SaveExpected);
         game.saveGame("Group9");
 
