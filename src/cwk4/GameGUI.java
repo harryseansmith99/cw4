@@ -92,8 +92,7 @@ public class GameGUI extends JPanel implements ActionListener {
                     display.append(ww + "\n\r");
                     inputField.setText("");
 
-                }
-                else {
+                } else {
                     display.append("No such Force" + "\n\r");
                     inputField.setText("");
                 }
@@ -197,20 +196,15 @@ public class GameGUI extends JPanel implements ActionListener {
                 String ww = "";
                 if (res == 0) {
                     ww = ("Congratulations. Battle won!");
-                }
-                else if (res == 1) {
+                } else if (res == 1) {
                     ww = ("Battle lost as no suitable force available.");
-                }
-                else if (res == 2) {
+                } else if (res == 2) {
                     ww = ("Battle lost. Force wasn`t strong enough.");
-                }
-                else if (res == 3) {
+                } else if (res == 3) {
                     ww = ("Battle lost. You have been defeated.");
-                }
-                else if (res == -1) {
+                } else if (res == -1) {
                     ww = ("Selected battle doesn`t exist. Please select an appropriate number.");
-                }
-                else {
+                } else {
                     ww = ("Unexpected exception.");
                 }
 
@@ -268,7 +262,9 @@ public class GameGUI extends JPanel implements ActionListener {
 
     }
 
-    private void saveGame() { sw.saveGame(admiralName); }
+    private void saveGame() {
+        sw.saveGame(admiralName);
+    }
 
     private void loadGame() {
         JPanel middlePanel = new JPanel();
@@ -341,8 +337,7 @@ public class GameGUI extends JPanel implements ActionListener {
             clip.open(audioInputStream);
 
             clip.loop(Clip.LOOP_CONTINUOUSLY);
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             System.out.println("Error with playing sound.");
             ex.printStackTrace();
         }
@@ -379,8 +374,7 @@ public class GameGUI extends JPanel implements ActionListener {
         try {
             image = ImageIO.read(new File("src/cwk4/Resources/bcg.jpg"));
 
-        }
-        catch (IOException ioe) {
+        } catch (IOException ioe) {
             ioe.printStackTrace();
         }
 
@@ -404,7 +398,9 @@ public class GameGUI extends JPanel implements ActionListener {
         buttonPanel.add(lafButton);
         lafButton.addActionListener(new ActionListener() {
 
-            public void actionPerformed(ActionEvent e) { createText(sw.getAllForces(), "List all Forces"); }
+            public void actionPerformed(ActionEvent e) {
+                createText(sw.getAllForces(), "List all Forces");
+            }
         });
 
         JButton abButton = new JButton("List All Battles");
@@ -412,7 +408,9 @@ public class GameGUI extends JPanel implements ActionListener {
         buttonPanel.add(abButton);
         abButton.addActionListener(new ActionListener() {
 
-            public void actionPerformed(ActionEvent e) { createText(sw.getAllBattles(), "List all Forces"); }
+            public void actionPerformed(ActionEvent e) {
+                createText(sw.getAllBattles(), "List all Forces");
+            }
         });
 
         JButton gdfButton = new JButton("Get Details Of a Force");
@@ -420,7 +418,9 @@ public class GameGUI extends JPanel implements ActionListener {
         buttonPanel.add(gdfButton);
         gdfButton.addActionListener(new ActionListener() {
 
-            public void actionPerformed(ActionEvent e) { getForce(); }
+            public void actionPerformed(ActionEvent e) {
+                getForce();
+            }
         });
 
         JButton afButton = new JButton("Activate a Force");
@@ -428,7 +428,9 @@ public class GameGUI extends JPanel implements ActionListener {
         buttonPanel.add(afButton);
         afButton.addActionListener(new ActionListener() {
 
-            public void actionPerformed(ActionEvent e) { activateForce(); }
+            public void actionPerformed(ActionEvent e) {
+                activateForce();
+            }
         });
 
         JButton lfButton = new JButton("View Active Star Fleet");
@@ -436,7 +438,9 @@ public class GameGUI extends JPanel implements ActionListener {
         buttonPanel.add(lfButton);
         lfButton.addActionListener(new ActionListener() {
 
-            public void actionPerformed(ActionEvent e) { createText(sw.getASFleet(), "List Active Star Fleet"); }
+            public void actionPerformed(ActionEvent e) {
+                createText(sw.getASFleet(), "List Active Star Fleet");
+            }
         });
 
         JButton bButton = new JButton("Battle");
@@ -444,7 +448,9 @@ public class GameGUI extends JPanel implements ActionListener {
         buttonPanel.add(bButton);
         bButton.addActionListener(new ActionListener() {
 
-            public void actionPerformed(ActionEvent e) { doBattle(); }
+            public void actionPerformed(ActionEvent e) {
+                doBattle();
+            }
         });
 
         JButton rButton = new JButton("Recall Force");
@@ -452,7 +458,9 @@ public class GameGUI extends JPanel implements ActionListener {
         buttonPanel.add(rButton);
         rButton.addActionListener(new ActionListener() {
 
-            public void actionPerformed(ActionEvent e) { recallForce(); }
+            public void actionPerformed(ActionEvent e) {
+                recallForce();
+            }
         });
 
         JButton gsButton = new JButton("Game State");
@@ -460,7 +468,9 @@ public class GameGUI extends JPanel implements ActionListener {
         buttonPanel.add(gsButton);
         gsButton.addActionListener(new ActionListener() {
 
-            public void actionPerformed(ActionEvent e) { createText(sw.toString(), "State of the game"); }
+            public void actionPerformed(ActionEvent e) {
+                createText(sw.toString(), "State of the game");
+            }
         });
 
         JButton sButton = new JButton("Save Game");
@@ -468,7 +478,9 @@ public class GameGUI extends JPanel implements ActionListener {
         buttonPanel.add(sButton);
         sButton.addActionListener(new ActionListener() {
 
-            public void actionPerformed(ActionEvent e) { saveGame(); }
+            public void actionPerformed(ActionEvent e) {
+                saveGame();
+            }
         });
 
         JButton lButton = new JButton("Load Game");
@@ -476,7 +488,9 @@ public class GameGUI extends JPanel implements ActionListener {
         buttonPanel.add(lButton);
         lButton.addActionListener(new ActionListener() {
 
-            public void actionPerformed(ActionEvent e) { loadGame(); }
+            public void actionPerformed(ActionEvent e) {
+                loadGame();
+            }
         });
 
         background.add(buttonPanel);
@@ -486,7 +500,8 @@ public class GameGUI extends JPanel implements ActionListener {
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {}
+    public void actionPerformed(ActionEvent e) {
+    }
 
     private static void createGUI() {
 
