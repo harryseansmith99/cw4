@@ -4,20 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b287c966-1ad9-40e2-819a-9dabc11d1e5e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/junit.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cwk4tests/T1SetupTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cwk4tests/T2DisplayBattlesForcesTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cwk4tests/T3ForceActivationTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cwk4tests/T4BattleTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cwk4tests/T5FileTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cwk4tests/T6TEMP.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cwk4tests/desktop.ini" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cwk4-studentsIJ.iml" beforeDir="false" afterPath="$PROJECT_DIR$/cwk4-studentsIJ.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cwk4/GameUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cwk4/GameUI.java" afterDir="false" />
-    </list>
+    <list default="true" id="b287c966-1ad9-40e2-819a-9dabc11d1e5e" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -128,7 +115,7 @@
       <updated>1678973007040</updated>
       <workItem from="1678973007193" duration="3000" />
       <workItem from="1682446365707" duration="345000" />
-      <workItem from="1682446754698" duration="2138000" />
+      <workItem from="1682446754698" duration="2732000" />
     </task>
     <servers />
   </component>
