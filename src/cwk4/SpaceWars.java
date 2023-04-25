@@ -5,7 +5,8 @@ import java.io.*;
 import java.util.*;
 
 /**
- * This class implements the behaviour expected from a WIN system as required for 5COM2007 - March 2023
+ * This class implements the behaviour expected from a WIN system as required
+ * for 5COM2007 - March 2023
  *
  * @author Team 9
  * @version March 2023
@@ -52,22 +53,28 @@ public class SpaceWars implements WIN {
    * Second constructor - task 3.5 To be added for task 3.5
    */
 
-     /**
-      * Returns a String representation of the state of the game, including the name of the admiral, state of the war chest, whether defeated or not, and the forces currently in the Active Star
-      * Fleet(ASF),(or, "No forces" if Star Fleet is empty)
-      *
-      * @return a String representation of the state of the game, including the name of the admiral, state of the war chest, whether defeated or not, and the forces currently in the Star Fleet,(or, "No
-      *         forces" if Active Star Fleet is empty)
-      **/
+  /**
+   * Returns a String representation of the state of the game, including the name
+   * of the admiral, state of the war chest, whether defeated or not, and the
+   * forces currently in the Active Star
+   * Fleet(ASF),(or, "No forces" if Star Fleet is empty)
+   *
+   * @return a String representation of the state of the game, including the name
+   *         of the admiral, state of the war chest, whether defeated or not, and
+   *         the forces currently in the Star Fleet,(or, "No
+   *         forces" if Active Star Fleet is empty)
+   **/
   public String toString() {
     return ("\nAdmiral`s Name: " + admiralName + "\nWarchest: " + getWarchest() + "\nIs defeated? " + isDefeated()
         + "\nActive forces: " + getASFleet());
   }
 
   /**
-   * returns true if war chest <=0 AND the active Star Fleet(ASF) has no forces which can be recalled.
+   * returns true if war chest <=0 AND the active Star Fleet(ASF) has no forces
+   * which can be recalled.
    *
-   * @returns true if war chest <=0 and the active Star Fleet(ASF) has no forces which can be recalled.
+   * @returns true if war chest <=0 and the active Star Fleet(ASF) has no forces
+   *          which can be recalled.
    */
   public boolean isDefeated() {
     if (warchest.getFunds() <= 0 && activeForces.isEmpty()) {
@@ -81,10 +88,14 @@ public class SpaceWars implements WIN {
    *
    * @returns the number of bit coins in the war chest
    */
-  public int getWarchest() { return warchest.getFunds(); }
+  public int getWarchest() {
+    return warchest.getFunds();
+  }
 
   /*
-   * Returns a list of all forces in the system by listing : All forces in the Active Star Fleet(ASF), or "No forces in ASF") All forces remaining in the UFF dock, or "No forces in UFF dock All forces
+   * Returns a list of all forces in the system by listing : All forces in the
+   * Active Star Fleet(ASF), or "No forces in ASF") All forces remaining in the
+   * UFF dock, or "No forces in UFF dock All forces
    * destroyed as a result of losing a battle, or "No destroyed forces"
    */
   public String getAllForces() {
@@ -92,8 +103,7 @@ public class SpaceWars implements WIN {
 
     if (curForces.isEmpty()) {
       s += "\nNo forces found";
-    }
-    else
+    } else
       for (Force temp_force : curForces) {
         s += "\n" + temp_force.toString();
       }
@@ -116,17 +126,18 @@ public class SpaceWars implements WIN {
   }
 
   /**
-   * Returns a String representation of all forces in the United Forces Fleet(UFF) dock. Does not include destroyed forces
+   * Returns a String representation of all forces in the United Forces Fleet(UFF)
+   * dock. Does not include destroyed forces
    *
-   * @return a String representation of all forces in the United Forces Fleet(UFF) dock.
+   * @return a String representation of all forces in the United Forces Fleet(UFF)
+   *         dock.
    **/
   public String getForcesInDock() {
     String s = "\n\n************ Forces available in UFFleet Dock********\n";
 
     if (curForces.isEmpty()) {
       s += "\nNo forces found";
-    }
-    else
+    } else
       for (Force temp_force : curForces) {
         if (isInUFFDock(temp_force.getReference())) {
           s += "\n" + temp_force.toString();
@@ -144,8 +155,7 @@ public class SpaceWars implements WIN {
     String s = "\n***** Destroyed Forces ****\n";
     if (curForces.isEmpty()) {
       s += "\nNo forces found";
-    }
-    else
+    } else
       for (Force temp_force : curForces) {
         if (temp_force.getState() == ForceState.DESTROYED) {
           s += "\n" + temp_force.toString();
@@ -155,7 +165,8 @@ public class SpaceWars implements WIN {
   }
 
   /**
-   * Returns details of the force with the given reference code, or "No such force"
+   * Returns details of the force with the given reference code, or "No such
+   * force"
    *
    * @param ref the reference of the force
    * @return details of the force with the given reference code
@@ -164,31 +175,31 @@ public class SpaceWars implements WIN {
     String s = "";
     if (findForce(ref, curForces) == null) {
       s += "\nNo such force";
-    }
-    else
+    } else
       s += findForce(ref, curForces).toString();
     return s;
   }
 
   // ***************** Active Star Fleet Forces ************************
   /**
-   * Allows a force to be activated into the Active Star Fleet(ASF), but only if there are enough resources for the activation fee.The force's state is set to "active"
+   * Allows a force to be activated into the Active Star Fleet(ASF), but only if
+   * there are enough resources for the activation fee.The force's state is set to
+   * "active"
    *
    * @param ref represents the reference code of the force
-   * @return 0 if force is activated, 1 if force is not in the UFF dock or is destroyed 2 if not enough money, -1 if no such force
+   * @return 0 if force is activated, 1 if force is not in the UFF dock or is
+   *         destroyed 2 if not enough money, -1 if no such force
    **/
   public int activateForce(String ref) {
     if (findForce(ref, curForces) != null) {
       if (!isInUFFDock(ref)) {
         return 1;
-      }
-      else if (isInUFFDock(ref) && warchest.getFunds() >= findForce(ref, curForces).getActivationFee()) {
+      } else if (isInUFFDock(ref) && warchest.getFunds() >= findForce(ref, curForces).getActivationFee()) {
         warchest.deductFunds(findForce(ref, curForces).getActivationFee());
         findForce(ref, curForces).changeState(ForceState.ACTIVE);
         activeForces.add(findForce(ref, curForces));
         return 0;
-      }
-      else if (isInUFFDock(ref) && warchest.getFunds() < findForce(ref, curForces).getActivationFee()) {
+      } else if (isInUFFDock(ref) && warchest.getFunds() < findForce(ref, curForces).getActivationFee()) {
         return 2;
       }
     }
@@ -196,10 +207,12 @@ public class SpaceWars implements WIN {
   }
 
   /**
-   * Returns true if the force with the reference code is in the Active Star Fleet(ASF), false otherwise.
+   * Returns true if the force with the reference code is in the Active Star
+   * Fleet(ASF), false otherwise.
    *
    * @param ref is the reference code of the force
-   * @return returns true if the force with the reference code is in the active Star Fleet(ASF), false otherwise.
+   * @return returns true if the force with the reference code is in the active
+   *         Star Fleet(ASF), false otherwise.
    **/
   public boolean isInASFleet(String ref) {
     if (findForce(ref, activeForces) != null) {
@@ -210,17 +223,18 @@ public class SpaceWars implements WIN {
   }
 
   /**
-   * Returns a String representation of the forces in the active Star Fleet(ASF), or the message "No forces activated"
+   * Returns a String representation of the forces in the active Star Fleet(ASF),
+   * or the message "No forces activated"
    *
-   * @return a String representation of the forces in the active Star Fleet, or the message "No forces activated"
+   * @return a String representation of the forces in the active Star Fleet, or
+   *         the message "No forces activated"
    **/
   public String getASFleet() {
     String s = "\n****** Forces in the Active Star Fleet******\n";
 
     if (activeForces.isEmpty()) {
       s += "\nNo forces found";
-    }
-    else
+    } else
       for (Force temp_force : activeForces) {
         if (isInASFleet(temp_force.getReference())) {
           s += "\n" + temp_force.toString();
@@ -230,7 +244,8 @@ public class SpaceWars implements WIN {
   }
 
   /**
-   * Recalls a force from the Star Fleet(ASF) back to the UFF dock, but only if it is in the Active Star Fleet(ASF)
+   * Recalls a force from the Star Fleet(ASF) back to the UFF dock, but only if it
+   * is in the Active Star Fleet(ASF)
    *
    * @param ref is the reference code of the force
    **/
@@ -270,15 +285,15 @@ public class SpaceWars implements WIN {
    * Provides a String representation of a battle given by the battle number
    *
    * @param num the number of the battle
-   * @return returns a String representation of a battle given by the battle number
+   * @return returns a String representation of a battle given by the battle
+   *         number
    **/
   public String getBattle(int num) {
     String s = "";
 
     if (!isBattle(num)) {
       s += "\nNo such Battle.";
-    }
-    else {
+    } else {
       s += findBattle(num).toString();
     }
     return s;
@@ -294,8 +309,7 @@ public class SpaceWars implements WIN {
 
     if (curBattles.isEmpty()) {
       s += "\nNo battles found";
-    }
-    else
+    } else
       for (Battle temp_battle : curBattles) {
         s += "\n" + temp_battle.toString();
       }
@@ -303,9 +317,14 @@ public class SpaceWars implements WIN {
   }
 
   /**
-   * Retrieves the battle represented by the battle number.Finds a force from the Active Star Fleet which can engage in the battle.The results of battle will be one of the following: 0 - Battle won,
-   * battle gains added to the war chest, 1 - Battle lost as no suitable force available, battle losses deducted from war chest 2 - Battle lost on battle strength , battle losses deducted from war chest
-   * and force destroyed 3 - If a battle is lost and admiral completely defeated (no resources and no forces to recall) -1 - no such battle
+   * Retrieves the battle represented by the battle number.Finds a force from the
+   * Active Star Fleet which can engage in the battle.The results of battle will
+   * be one of the following: 0 - Battle won,
+   * battle gains added to the war chest, 1 - Battle lost as no suitable force
+   * available, battle losses deducted from war chest 2 - Battle lost on battle
+   * strength , battle losses deducted from war chest
+   * and force destroyed 3 - If a battle is lost and admiral completely defeated
+   * (no resources and no forces to recall) -1 - no such battle
    *
    * @param battleNo is the number of the battle
    * @return an int showing the result of the battle (see above)
@@ -318,8 +337,7 @@ public class SpaceWars implements WIN {
             if (temp_force.getStrength() >= findBattle(battleNo).getEnemyStrength()) {
               warchest.addFunds(findBattle(battleNo).getGains());
               return 0;
-            }
-            else {
+            } else {
               warchest.deductFunds(findBattle(battleNo).getLosses());
               destroyForce(temp_force.getReference());
               if (isDefeated()) {
@@ -333,8 +351,7 @@ public class SpaceWars implements WIN {
         warchest.deductFunds(findBattle(battleNo).getLosses());
         return 1;
 
-      }
-      else {
+      } else {
         warchest.deductFunds(findBattle(battleNo).getLosses());
         if (isDefeated()) {
           return 3;
@@ -342,8 +359,7 @@ public class SpaceWars implements WIN {
 
         return 1;
       }
-    }
-    else {
+    } else {
       return -1;
     }
   }
@@ -442,7 +458,7 @@ public class SpaceWars implements WIN {
   // * @param fname name of file storing requests
   // */
   public void saveGame(String fname) { // uses object serialisation
-    createSaveFile(getFilePath(2, fname));
+
     {
 
       try {
@@ -458,11 +474,9 @@ public class SpaceWars implements WIN {
 
         o.close();
         f.close();
-      }
-      catch (FileNotFoundException e) {
+      } catch (FileNotFoundException e) {
 
-      }
-      catch (IOException e) {
+      } catch (IOException e) {
 
       }
 
@@ -503,8 +517,7 @@ public class SpaceWars implements WIN {
             if (tf.getState() == ForceState.ACTIVE) {
               tempActiveForces.add(tf);
             }
-          }
-          catch (EOFException e) {
+          } catch (EOFException e) {
             break;
           }
         }
@@ -515,15 +528,12 @@ public class SpaceWars implements WIN {
         oi.close();
         fi.close();
 
-      }
-      catch (FileNotFoundException e) {
+      } catch (FileNotFoundException e) {
 
-      }
-      catch (IOException e) {
+      } catch (IOException e) {
 
-      }
-      catch (ClassNotFoundException e) {
-        // TODO Auto-generated catch block
+      } catch (ClassNotFoundException e) {
+
         e.printStackTrace();
       }
 
@@ -533,21 +543,17 @@ public class SpaceWars implements WIN {
 
   }
 
-  private void createSaveFile(String fname) {
-
-    File save = new File(getFilePath(2, fname));
-
-  }
-
   private String getFilePath(int option, String fname) {
     String s = "";
 
     if (option == 1) {
       s = ("src/cwk4/" + fname.toLowerCase() + ".txt");
+
     }
 
     else if (option == 2) {
       s = ("src/cwk4/Saved Games/" + fname.toLowerCase() + ".txt");
+
     }
 
     else {

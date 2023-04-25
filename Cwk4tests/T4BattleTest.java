@@ -18,21 +18,26 @@ import cwk4.WIN;
 public class T4BattleTest {
     WIN game;
 
-    public T4BattleTest() {}
+    public T4BattleTest() {
+    }
 
     @BeforeClass
-    public static void setUpClass() {}
+    public static void setUpClass() {
+    }
 
     @AfterClass
-    public static void tearDownClass() {}
+    public static void tearDownClass() {
+    }
 
     @Before
-    public void setUp() { game = new SpaceWars("Jean"); }
+    public void setUp() {
+        game = new SpaceWars("Jean");
+    }
 
     @After
-    public void tearDown() {}
+    public void tearDown() {
+    }
 
-    // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
     //
     @Test
@@ -219,20 +224,21 @@ public class T4BattleTest {
         game.doBattle(4);
         assertTrue(game.isDefeated());
     }
-    
-    //Test to make sure the game can still be played normally when getting out of debt
+
+    // Test to make sure the game can still be played normally when getting out of
+    // debt
     @Test
     public void checkCanStillActivateForcesAfterGettingOutOfDebt() {
-    	int expected = 30;
-    	game.activateForce("IW1");
-    	game.activateForce("WB3");
-    	game.activateForce("SS6");
-    	game.doBattle(2);
-    	game.doBattle(1);
-    	game.doBattle(7);
-    	game.doBattle(7);
-    	game.activateForce("SS7");
-    	int actual = game.getWarchest();
-    	assertEquals(expected, actual);
+        int expected = 30;
+        game.activateForce("IW1");
+        game.activateForce("WB3");
+        game.activateForce("SS6");
+        game.doBattle(2);
+        game.doBattle(1);
+        game.doBattle(7);
+        game.doBattle(7);
+        game.activateForce("SS7");
+        int actual = game.getWarchest();
+        assertEquals(expected, actual);
     }
 }
