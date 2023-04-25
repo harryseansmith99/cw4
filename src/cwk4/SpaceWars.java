@@ -458,7 +458,7 @@ public class SpaceWars implements WIN {
   // * @param fname name of file storing requests
   // */
   public void saveGame(String fname) { // uses object serialisation
-    createSaveFile(getFilePath(2, fname));
+
     {
 
       try {
@@ -533,7 +533,7 @@ public class SpaceWars implements WIN {
       } catch (IOException e) {
 
       } catch (ClassNotFoundException e) {
-        // TODO Auto-generated catch block
+
         e.printStackTrace();
       }
 
@@ -543,21 +543,17 @@ public class SpaceWars implements WIN {
 
   }
 
-  private void createSaveFile(String fname) {
-
-    File save = new File(getFilePath(2, fname));
-
-  }
-
   private String getFilePath(int option, String fname) {
     String s = "";
 
     if (option == 1) {
       s = ("src/cwk4/" + fname.toLowerCase() + ".txt");
+
     }
 
     else if (option == 2) {
       s = ("src/cwk4/Saved Games/" + fname.toLowerCase() + ".txt");
+
     }
 
     else {

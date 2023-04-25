@@ -21,19 +21,25 @@ import cwk4.WIN;
 public class T1SetupTest {
     WIN game;
 
-    public T1SetupTest() {}
+    public T1SetupTest() {
+    }
 
     @BeforeClass
-    public static void setUpClass() {}
+    public static void setUpClass() {
+    }
 
     @AfterClass
-    public static void tearDownClass() {}
+    public static void tearDownClass() {
+    }
 
     @Before
-    public void setUp() { game = new SpaceWars("David"); }
+    public void setUp() {
+        game = new SpaceWars("David");
+    }
 
     @After
-    public void tearDown() {}
+    public void tearDown() {
+    }
 
     private boolean containsText(String text, String[] str) {
         boolean result = true;
@@ -43,7 +49,6 @@ public class T1SetupTest {
         return result;
     }
 
-    // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
     //
 
@@ -78,14 +83,14 @@ public class T1SetupTest {
         }
         assertTrue(result);
     }
-    
-    //Test a battle that doesn't exist in Appendix A
+
+    // Test a battle that doesn't exist in Appendix A
     @Test
     public void nonExistingBattleAtSetup() {
-    	boolean result = game.isBattle(9);
-    	assertFalse(result);
+        boolean result = game.isBattle(9);
+        assertFalse(result);
     }
-    
+
     @Test
     public void forceInUFFAtSetup() {
         boolean result = game.isInUFFDock("IW1");
@@ -113,15 +118,15 @@ public class T1SetupTest {
         }
         assertTrue(result);
     }
-    
-    //Test to make sure recallForce has no effect on docked/setup forces
+
+    // Test to make sure recallForce has no effect on docked/setup forces
     @Test
     public void recallForceFromSetup() {
-    	int initialFunds = game.getWarchest(); 
-    	game.recallForce("IW1");
-    	int resultFunds = game.getWarchest();
-    	boolean result = initialFunds == resultFunds;
-    	assertTrue(result);
+        int initialFunds = game.getWarchest();
+        game.recallForce("IW1");
+        int resultFunds = game.getWarchest();
+        boolean result = initialFunds == resultFunds;
+        assertTrue(result);
     }
 
     @Test
@@ -133,16 +138,16 @@ public class T1SetupTest {
         boolean result = containsText(str, target);
         assertTrue(result);
     }
-    
-    //Test a WarBird with cloak
+
+    // Test a WarBird with cloak
     @Test
     public void detailsOfWB5() {
-    	String str = game.getForceDetails("WB5");
-    	String[] target = {
-    			"WB5", "Hang", "300", "400", "In dock", "true"
-    	};
-    	boolean result = containsText(str, target);
-    	assertTrue(result);
+        String str = game.getForceDetails("WB5");
+        String[] target = {
+                "WB5", "Hang", "300", "400", "In dock", "true"
+        };
+        boolean result = containsText(str, target);
+        assertTrue(result);
     }
 
     @Test
@@ -184,15 +189,15 @@ public class T1SetupTest {
         boolean result = containsText(str, details);
         assertTrue(result);
     }
-    
-    //Test to make sure game does not use a non existing battle
+
+    // Test to make sure game does not use a non existing battle
     @Test
     public void detailsOfNonExistingBattle() {
-    	String str = game.getBattle(-1);
-    	String[] details = {
-    			"No such Battle"
-    	};
-    	boolean result = containsText(str, details);
-    	assertTrue(result);
+        String str = game.getBattle(-1);
+        String[] details = {
+                "No such Battle"
+        };
+        boolean result = containsText(str, details);
+        assertTrue(result);
     }
 }

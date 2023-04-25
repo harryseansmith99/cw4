@@ -21,19 +21,25 @@ import cwk4.WIN;
 public class T3ForceActivationTest {
     WIN game;
 
-    public T3ForceActivationTest() {}
+    public T3ForceActivationTest() {
+    }
 
     @BeforeClass
-    public static void setUpClass() {}
+    public static void setUpClass() {
+    }
 
     @AfterClass
-    public static void tearDownClass() {}
+    public static void tearDownClass() {
+    }
 
     @Before
-    public void setUp() { game = new SpaceWars("Olenka"); }
+    public void setUp() {
+        game = new SpaceWars("Olenka");
+    }
 
     @After
-    public void tearDown() {}
+    public void tearDown() {
+    }
 
     private boolean containsText(String text, String[] str) {
         boolean result = true;
@@ -43,7 +49,6 @@ public class T3ForceActivationTest {
         return result;
     }
 
-    // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
     //
 
@@ -89,14 +94,14 @@ public class T3ForceActivationTest {
         game.activateForce("WB5");
         assertEquals(expected, game.getWarchest());
     }
-    
+
     @Test
     public void returnValueForAlreadyActiveForce() {
-    	int expected = 1;
-    	game.activateForce("IW1");
-    	game.activateForce("SS2");
-    	int actual = game.activateForce("IW1");
-    	assertEquals(expected, actual);
+        int expected = 1;
+        game.activateForce("IW1");
+        game.activateForce("SS2");
+        int actual = game.activateForce("IW1");
+        assertEquals(expected, actual);
     }
 
     @Test
