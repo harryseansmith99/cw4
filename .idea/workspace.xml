@@ -1,11 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="b287c966-1ad9-40e2-819a-9dabc11d1e5e" name="Changes" comment="" />
+    <list default="true" id="b287c966-1ad9-40e2-819a-9dabc11d1e5e" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/junit.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cwk4tests/T1SetupTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cwk4tests/T2DisplayBattlesForcesTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cwk4tests/T3ForceActivationTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cwk4tests/T4BattleTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cwk4tests/T5FileTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cwk4tests/T6TEMP.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cwk4tests/desktop.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cwk4-studentsIJ.iml" beforeDir="false" afterPath="$PROJECT_DIR$/cwk4-studentsIJ.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cwk4/GameUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cwk4/GameUI.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2N686fq28ftq1ZSIPcokQfvaf7I" />
   <component name="ProjectViewState">
@@ -14,12 +36,88 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Downloaded.Files.Path.Enabled": "true",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "settings.editor.selected.configurable": "advanced.settings"
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "advanced.settings",
+    "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RunManager" selected="JUnit.Cwk4tests in cwk4-studentsIJ">
+    <configuration name="All in cwk4-studentsIJ" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="cwk4-studentsIJ" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Cwk4tests in cwk4-studentsIJ" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="cwk4-studentsIJ" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Cwk4tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Cwk4tests" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="T6TEMP" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="cwk4-studentsIJ" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Cwk4tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Cwk4tests" />
+      <option name="MAIN_CLASS_NAME" value="Cwk4tests.T6TEMP" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="T6TEMP.testRestoreGame" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="cwk4-studentsIJ" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Cwk4tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Cwk4tests" />
+      <option name="MAIN_CLASS_NAME" value="Cwk4tests.T6TEMP" />
+      <option name="METHOD_NAME" value="testRestoreGame" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.Cwk4tests in cwk4-studentsIJ" />
+        <item itemvalue="JUnit.T6TEMP" />
+        <item itemvalue="JUnit.T6TEMP.testRestoreGame" />
+        <item itemvalue="JUnit.All in cwk4-studentsIJ" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -29,7 +127,12 @@
       <option name="presentableId" value="Default" />
       <updated>1678973007040</updated>
       <workItem from="1678973007193" duration="3000" />
+      <workItem from="1682446365707" duration="345000" />
+      <workItem from="1682446754698" duration="2138000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
 </project>

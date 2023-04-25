@@ -129,7 +129,7 @@ public class GameUI {
         return "force is not in the UFFDock";
       case 2:
         return "not enough money";
-      case 3:
+      case -1:
         return "no such force";
       default:
         return "Error";
