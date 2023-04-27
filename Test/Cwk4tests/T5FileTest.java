@@ -17,7 +17,8 @@ import java.io.IOException;
  */
 public class T5FileTest {
     WIN game;
-    String savePath = ("src/cwk4/Saved Games/angela.txt");
+    String savePath = ("src/cwk4/Saved Games/group9.txt");
+
     public T5FileTest() {
     }
 
@@ -46,20 +47,17 @@ public class T5FileTest {
         return result;
     }
 
-
-
     @Test
-    public void testSaveGame(){
+    public void testSaveGame() {
 
-        game.saveGame("angela");
-
+        game.saveGame("group9");
 
         File saveFile = new File(savePath);
         assertTrue(saveFile.exists());
     }
 
     @Test
-    public void testRestoreGame()  {
+    public void testRestoreGame() {
         // Create a SpaceWars instance
 
         // Change some game state
@@ -99,21 +97,19 @@ public class T5FileTest {
     @Test
     public void loadGameWithUnsavedChanges() {
         game.activateForce("IW4");
-        String[] preSaveExpected = {
+        String[] SaveExpected = {
                 "Group9", "800", "IW4"
         };
         String preSaveResult = game.toString();
-        boolean preSaveActual = containsText(preSaveResult, preSaveExpected);
+        boolean preSaveActual = containsText(preSaveResult, SaveExpected);
         game.saveGame("Group9");
         game.activateForce("WB3");
         game.doBattle(2);
 
         game = game.restoreGame("Group9");
-        String[] postSaveExpected = {
-                "Group9", "800", "IW4"
-        };
+
         String postSaveResult = game.toString();
-        boolean postSaveActual = containsText(postSaveResult, postSaveExpected);
+        boolean postSaveActual = containsText(postSaveResult, SaveExpected);
 
         boolean compareActual = preSaveActual && postSaveActual;
         assertTrue(compareActual);
