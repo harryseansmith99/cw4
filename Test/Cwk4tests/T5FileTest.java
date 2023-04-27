@@ -10,7 +10,7 @@ import static org.junit.Assert.*;
 import cwk4.WIN;
 
 import java.io.File;
-import java.io.IOException;
+
 
 /**
  * @author aam
